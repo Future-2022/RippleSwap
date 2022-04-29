@@ -1,74 +1,75 @@
 import React, { useState, useEffect, useHistory } from 'react';
-import { FaAlignJustify, FaHome, FaTractor, FaBabyCarriage, FaSteam, FaOutdent,
-         FaShareSquare, FaTwitter, FaArrowRight, FaClosedCaptioning, FaTimes, FaQuestion, FaQuestionCircle} from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import Navbar from '../../components/NavBar';
-import './index.css';
-import TradeViewChart from 'react-crypto-chart';
+// import { FaAlignJustify, FaHome, FaTractor, FaBabyCarriage, FaSteam, FaOutdent,
+//          FaShareSquare, FaTwitter, FaArrowRight, FaClosedCaptioning, FaTimes, FaQuestion, FaQuestionCircle} from 'react-icons/fa';
+// import { Link } from 'react-router-dom';
+// import Navbar from '../../components/NavBar';
+// import './index.css';
+// import TradeViewChart from 'react-crypto-chart';
 
-import panBg from '../../img/quotation/pan-bg.svg';
-import panBg1 from '../../img/quotation/pan-bg2.svg';
-import upImage from '../../img/lbd.png';
-import logo_short from '../../img/quotation/24_24.svg';
-import CountUp from 'react-countup';
+// import panBg from '../../img/quotation/pan-bg.svg';
+// import panBg1 from '../../img/quotation/pan-bg2.svg';
+// import upImage from '../../img/lbd.png';
+// import logo_short from '../../img/quotation/24_24.svg';
+// import CountUp from 'react-countup';
 
-import MyModal from '../../components/Modal';
-import $ from 'jquery';
-import Chart from '../../pages/Chart';
+// import MyModal from '../../components/Modal';
+// import $ from 'jquery';
+// import Chart from '../../pages/Chart';
 
 const Home = (props) => {
     
-    const [openModal, setOpenModal] = useState(false);    
-    const [openCheck, setOpenChecked] = useState('close');    
-    const [login, setLogin] = useState(false);    
-    const [bnbPrice, setBNBPrice] = useState(0);    
-    const [babydogePrice, setBabydogePrice] = useState(0);    
+    // const [openModal, setOpenModal] = useState(false);    
+    // const [openCheck, setOpenChecked] = useState('close');    
+    // const [login, setLogin] = useState(false);    
+    // const [bnbPrice, setBNBPrice] = useState(0);    
+    // const [babydogePrice, setBabydogePrice] = useState(0);    
     
-    const openChecked = (status) => {
-        setOpenChecked(status);
-    }
+    // const openChecked = (status) => {
+    //     setOpenChecked(status);
+    // }
     
-    const OpenModal = () => {
-        if(openModal === false)
-            setOpenModal(true)
-        else
-            setOpenModal(false);
-    }
-    useEffect(() => {
-        const formData = {
-            'currency':"USD",
-            'code':"BABYDOGE",
-            'meta':true
-        }
-        window.setTimeout(function() {
-            $.ajax({
-              url: "https://api.binance.com/api/v3/avgPrice?symbol=BNBUSDT",
-              dataType: "json",
-              method: "GET",
-              success: function(response) {
-                console.log(response);
-                setBNBPrice(response.price);
-              }
-            });
-            $.ajax({
-                url: "https://api.livecoinwatch.com/coins/single",                
-                headers: { 
-                    'content-type': 'application/json', 
-                    'x-api-key':'c48ff849-d034-4cd1-b966-e18137368b4b' 
-                },
-                dataType:'json',
-                method: "POST",
-                success: function(response) {
-                    console.log(response.rate);
-                    setBabydogePrice(response.rate);
-                },              
-                data: JSON.stringify(formData)
-            });
-          }, 100);
-    }, []);
+    // const OpenModal = () => {
+    //     if(openModal === false)
+    //         setOpenModal(true)
+    //     else
+    //         setOpenModal(false);
+    // }
+    // useEffect(() => {
+    //     const formData = {
+    //         'currency':"USD",
+    //         'code':"BABYDOGE",
+    //         'meta':true
+    //     }
+    //     window.setTimeout(function() {
+    //         $.ajax({
+    //           url: "https://api.binance.com/api/v3/avgPrice?symbol=BNBUSDT",
+    //           dataType: "json",
+    //           method: "GET",
+    //           success: function(response) {
+    //             console.log(response);
+    //             setBNBPrice(response.price);
+    //           }
+    //         });
+    //         $.ajax({
+    //             url: "https://api.livecoinwatch.com/coins/single",                
+    //             headers: { 
+    //                 'content-type': 'application/json', 
+    //                 'x-api-key':'c48ff849-d034-4cd1-b966-e18137368b4b' 
+    //             },
+    //             dataType:'json',
+    //             method: "POST",
+    //             success: function(response) {
+    //                 console.log(response.rate);
+    //                 setBabydogePrice(response.rate);
+    //             },              
+    //             data: JSON.stringify(formData)
+    //         });
+    //       }, 100);
+    // }, []);
+
     return (
         <>
-            <Navbar openChecked={openChecked} isLogin={setLogin}/>
+            {/* <Navbar openChecked={openChecked} isLogin={setLogin}/>
             
             <div className={`${openCheck !== 'close' ? 'p-main-close':'p-main'}`}>
                 <div className='d-flex upSide'>
@@ -157,7 +158,7 @@ const Home = (props) => {
                     </div>
                 </div>
             </div>
-            <MyModal isOpen={openModal}/>            
+            <MyModal isOpen={openModal}/>             */}
         </>
     )
 }

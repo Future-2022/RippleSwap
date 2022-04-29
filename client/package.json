@@ -1,7 +1,7 @@
 {
-  "name": "babydogeapp",
+  "name": "RippleSwap",
   "version": "0.1.0",
-  "homepage": "https://babydogedefi.io/",
+  "homepage": "https://RippleSwap.io/",
   "private": true,
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
