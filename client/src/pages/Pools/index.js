@@ -6,7 +6,7 @@ import './index.css';
 import {calculateReward} from '../../services/utils';
 import firstIcon from '../../img/quotation/lbd-bnb.svg';
 import MetaMask from '../../img/quotation/metamask.svg';
-import poolImage from '../../img/syrup.png';
+// import poolImage from '../../img/syrup.png';
 import Countdown from 'react-countdown';
 import MyModal from '../../components/Modal';
 import { ToastContainer, toast } from 'react-toastify';
@@ -273,7 +273,7 @@ const Farm = (props) => {
                             </ul>
                         </div>
                     </div>
-                    <div><img src={poolImage} width={410} height={191} className="pool-image" /></div>
+                    {/* <div><img src={poolImage} width={410} height={191} className="pool-image" /></div> */}
                 </div>
                 <Countdown date={date}
                     ref={counterDownRef}

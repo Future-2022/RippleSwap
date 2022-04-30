@@ -92,7 +92,7 @@
 }
 .text-grey {
     color: rgb(160, 159, 159);
-    font-size: 24px;
+    /* font-size: 24px; */
     /* font-weight: bold; */
 }
 .fa-btn-disable {
