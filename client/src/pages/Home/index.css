@@ -54,10 +54,19 @@
     text-align: right;
 }
 .offer-btn {
+    cursor: pointer;
     background-color: #ff626e;
     padding: 12px 14px;
     text-align: center;
     font-size: 19px;
+    box-shadow: 0 4px 30px rgb(0 0 0 / 20%), 0 4px 50px rgb(227 87 96 / 50%), 0 60px 150px rgb(227 87 96 / 62%);
+}
+.offer-btn:hover {
+    background-color: #c54c56;
+    padding: 12px 14px;
+    text-align: center;
+    font-size: 19px;
+    animation: animateGlow 2s ease 1;
     box-shadow: 0 4px 30px rgb(0 0 0 / 20%), 0 4px 50px rgb(227 87 96 / 50%), 0 60px 150px rgb(227 87 96 / 62%);
 }
 .main-title {
@@ -84,9 +93,15 @@
 .item-btn {
     background-color: #20262b43;
     color: rgb(189, 145, 217);
+    cursor: pointer;
     border: solid 3px rgba(81, 59, 74, 0.2);
     text-align: center;
     padding: 8px;
+}
+.item-btn:hover {
+    background-color: #2d373e43;
+    animation: animateGlow 2s ease 1;
+    color: rgb(168, 129, 193);
 }
 .item-icon {
     background-color: #36293b;
@@ -133,10 +148,21 @@
 }
 .send-btn {
     background-color: #e35760;
+    cursor: pointer;
     width: 60px;
     height: 60px;
     text-align: center;
     padding: 12px;
+}
+.send-btn:hover {
+    background-color: #ff7f87;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    padding: 12px;
+    -webkit-animation:fade-in 5s;
+    -webkit-animation-delay:15s;
 }
 .line-block {
     display: inline-block;
@@ -156,4 +182,10 @@
 .trust {
     font-size: 20px;
     font-weight: 400;
+}
+.fs-24{
+    font-size: 24px;
+}
+.mr-40 {
+    margin-right: 40px;
 }

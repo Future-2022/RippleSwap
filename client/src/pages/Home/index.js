@@ -7,6 +7,7 @@ import './index.css';
 // import TradeViewChart from 'react-crypto-chart';
 import mainLogo from '../../img/icons/main-logo.svg';
 import coinBack from '../../img/coin-back.webp';
+
 import icon1 from '../../img/icons/1.svg';
 import icon2 from '../../img/icons/2.svg';
 import icon3 from '../../img/icons/3.svg';
@@ -18,6 +19,10 @@ import expIcon1 from '../../img/icons/7.svg';
 import expIcon2 from '../../img/icons/8.svg';
 import expIcon3 from '../../img/icons/9.svg';
 import expIcon4 from '../../img/icons/10.svg';
+
+import cardIcon1 from '../../img/hive-blockchain-hive-logo.svg';
+import cardIcon2 from '../../img/digibyte.svg';
+import cardIcon3 from '../../img/1414.png';
 
 import footerImg from '../../img/footer-back.webp';
 
@@ -150,7 +155,7 @@ const Home = (props) => {
                             <div className='w-3'>
                                 <div className='item-card'>
                                     <div className='item-title d-flex'>
-                                        <img src='images/asteroid.png' className='item-icon sepia align-self-center' width={34}/>
+                                        <img src={cardIcon1} className='item-icon sepia align-self-center' width={34}/>
                                         <h5 className='px-4 font-font-OpenSansSemiBold align-self-center'>Farm XRP</h5>
                                     </div>
                                     <div className='px-3 py-3'>
@@ -163,7 +168,7 @@ const Home = (props) => {
                             <div className='w-3'>
                                 <div className='item-card'>
                                     <div className='item-title d-flex'>
-                                        <img src='images/star.png' className='item-icon sepia align-self-center' width={34}/>
+                                        <img src={cardIcon2} className='item-icon sepia align-self-center' width={34}/>
                                         <h5 className='px-4 font-font-OpenSansSemiBold'>Stake XRP</h5>
                                     </div>
                                     <div className='px-3 py-3'>
@@ -176,7 +181,7 @@ const Home = (props) => {
                             <div className='w-3'>
                                 <div className='item-card'>
                                     <div className='item-title d-flex'>
-                                        <img src='images/telescope.png' className='item-icon sepia align-self-center' width={34}/>
+                                        <img src={cardIcon3} className='item-icon sepia align-self-center' width={34}/>
                                         <h5 className='px-4 font-font-OpenSansSemiBold'>Portfolio</h5>
                                     </div>
                                     <div className='px-3 py-3'>
@@ -299,11 +304,13 @@ const Home = (props) => {
 
                     <div className='text-white pt-4'>
                         <div><h4 className='font-OpenSansRegular'>Frequently Asked Questions</h4></div>
-                        <div className='QA d-flex justify-content-between my-3'>
+
+                        <div className='QA d-flex justify-content-between my-3 cursor-pointer'>
                             <h5 className='align-self-center fs-18 font-OpenSansRegular'>Will XRP go up?</h5>
                             <FaPlus className=' align-self-center' />
                         </div>
-                        <div className='QA d-flex justify-content-between my-3'>
+                        
+                        <div className='QA d-flex justify-content-between my-3 cursor-pointer'>
                             <h5 className='align-self-center fs-18 font-OpenSansRegular'>Is XRP a good investment?</h5>
                             <FaPlus className=' align-self-center' />
                         </div>
@@ -331,7 +338,7 @@ const Home = (props) => {
                                 <div className='w-50'>
                                     <div><h4 className='font-OpenSansRegulars cum-yellow'>SwapSpace</h4></div>
                                     <div>
-                                        <p className='subscripe text-justify mr-5 font-OpenSansRegular fs-14'>SwapSpace provides you with a full spectrum of crypto exchange options to help you swap your crypto quickly and easily. We partner with top cryptocurrency exchanges to give you the ability to easily swap more than 800 cryptocurrencies and tokens with no limits or registration — all while keeping the highest standard of care for our customers.
+                                        <p className='subscripe text-justify mr-40 font-OpenSansRegular fs-14'>SwapSpace provides you with a full spectrum of crypto exchange options to help you swap your crypto quickly and easily. We partner with top cryptocurrency exchanges to give you the ability to easily swap more than 800 cryptocurrencies and tokens with no limits or registration — all while keeping the highest standard of care for our customers.
 
                                             Our highest priority is saving your time, which is why we did all the work for you. You only need to decide what cryptocurrency you want to swap — and then choose the best exchange option for you. As easy as pie!</p>
                                     </div>
@@ -387,11 +394,11 @@ const Home = (props) => {
                             <div className='d-flex'>
                                 <FaStar className='align-self-center'/> <span className='trust align-self-center pl-1'>TrustPilot</span>
                             </div>
-                            <div><FaTwitter /></div>
-                            <div><FaFacebook /></div>
-                            <div><FaExchangeAlt /></div>
-                            <div><FaHome /></div>
-                            <div><FaClosedCaptioning /></div>
+                            <div className='align-self-center'><FaTwitter className='fs-24'/></div>
+                            <div className='align-self-center'><FaFacebook className='fs-24'/></div>
+                            <div className='align-self-center'><FaExchangeAlt className='fs-24'/></div>
+                            <div className='align-self-center'><FaHome className='fs-24'/></div>
+                            <div className='align-self-center'><FaClosedCaptioning className='fs-24'/></div>
                         </div>
                     </div>
                 </div>                
