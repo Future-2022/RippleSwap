@@ -15,6 +15,7 @@
   "dependencies": {
     "amplitude-js": "^8.17.0",
     "axios": "^0.21.0",
+    "base58-js": "^1.0.0",
     "bcryptjs": "^2.4.3",
     "bip39": "^3.0.4",
     "client": "file:client",

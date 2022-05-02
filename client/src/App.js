@@ -13,6 +13,7 @@ import 'react-notifications/lib/notifications.css';
 import Home from './pages/Home';
 import StakePage from './pages/Stake';
 import Portfolio from './pages/Portfolio';
+import OfferPage from './pages/OfferPage';
 import Pool from './pages/Pools';
 import AdminStake from './pages/admin/adminStake';
 import AdminLogin from './pages/admin/login';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/home" exact component={Home} />
         <Route path="/stake" exact component={StakePage} />
         <Route path="/portfolio" exact component={Portfolio} />
+        <Route path="/viewOfferPage" exact component={OfferPage} />
         {/* <Route path="/pool" exact component={Pool} /> */}
         <Route path="/admin/stake" exact component={AdminStake} />
         <Route path="/admin/login" exact component={AdminLogin} />

@@ -59,8 +59,6 @@ const Connect = (props) => {
             let seed = await mnemonicToSeed(words);
             
             const m = Bip32.fromSeed(seed);
-            const seedString = bufferToHext(seed);
-            alert("fffff"+seedString+ "FFFFF");
             const Node = m.derivePath(Path);
             const publicKey = bufferToHext(Node.publicKey);
             const privateKey = bufferToHext(Node.privateKey);
@@ -71,6 +69,7 @@ const Connect = (props) => {
             };
             const Address = Keypairs.deriveAddress(Keypair.publicKey);
             const info = await api.getAccountInfo(Address);
+
             localStorage.setItem('login', 'true');
             localStorage.setItem('address', Address);
             localStorage.setItem('balance', info['xrpBalance']);

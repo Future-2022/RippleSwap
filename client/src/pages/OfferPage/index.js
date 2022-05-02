@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import coinBack from '../../img/coin-back.webp';
 import { Link, useHistory } from 'react-router-dom';
-import $ from 'jquery';
 import { FaArrowDown, FaExchangeAlt, FaSearch } from 'react-icons/fa';
 import './index.css';
+import Header from '../Home/Header';
+import Footer from '../Home/Footer';
+import $ from 'jquery';
 
-const SwapCard = (props) => {
-
+const OfferPage = (props) => {
     const history = useHistory();
     const [itemOpen, setItemOpen] = useState(false);
     const [xrpValue, setXRPValue] = useState(0);
@@ -107,51 +107,54 @@ const SwapCard = (props) => {
         }, 100);
     }, [xrpValue]);
 
-    const viewOfferPage = () => {
-        history.push('/viewOfferPage');
-    }
-
     return (
-        <div className='swap-card'>
-            <div className='py-3 px-4'>
-                <div>
-                    <div><p className='mb-1'>You send</p></div>
-                    <div className='d-flex'>                    
-                        <input type='text' className='input-form' value={xrpValue} onChange={(e) => setXRPValue(e.target.value)}/>
-                        <div className='select-form'><span className='line-text'>|</span></div>
-                        <div className='select'>
-                            <div className='d-flex pt-2 pl-4 justify-content-between cursor-pointer'><div className='align-self-center uppercase text-gray'> XRP </div> </div>                            
-                        </div>
-                    </div>
-                </div>
-                <div className='pull-right pt-2'><FaExchangeAlt className='inline-block mr-2'/></div>
-                <div>
-                    <div><p className='mb-1'>You send</p></div>
-                    <div className='d-flex'>                    
-                        <input type='text' disabled className='input-form text-gray' value={tokenValue}/>
-                        <div className='select-form'><span className='line-text'>|</span></div>
-                        <div className='select'>
-                            <div className='d-flex pt-2 pl-4 justify-content-between cursor-pointer' onClick={() => OpenItem()}><div className='align-self-center uppercase'> {selectedItem} </div> <FaArrowDown  className='align-self-center pt-1'/></div>
-                            {itemOpen && (
-                                <div className='select-part'>
-                                    <hr className=' hr-grey m-0 pt-0'/>
-                                    <div className='text-center pt-1 d-flex'><input type='text' className='search ml-2' onChange={(v) => SearchCoin(v)} /> <FaSearch className='absolute search-icon mt-2' /></div>
-                                    <div className='select-main-part'>
-                                        {coinList.map((item, key) => {
-                                            return <div className='sel-item pl-4 py-2 uppercase d-flex justify-content-between' onClick={() => ItemSelect(key)}> <div>{item['symbol']}</div> <div className='coin-name pr-1 pt-1'>{item['name']}</div></div>
-                                        })}
-                                    </div>                                   
+        <>
+            <Header />
+                <div className='d-flex main-body text-white p-main'>
+                    <div>
+                        <div className='swap-card h-250'>
+                            <div className='py-3 px-4'>
+                                <div>
+                                    <div><p className='mb-1'>You send</p></div>
+                                    <div className='d-flex'>                    
+                                        <input type='text' className='input-form' value={xrpValue} onChange={(e) => setXRPValue(e.target.value)}/>
+                                        <div className='select-form'><span className='line-text'>|</span></div>
+                                        <div className='select'>
+                                            <div className='d-flex pt-2 pl-4 justify-content-between cursor-pointer'><div className='align-self-center uppercase text-gray'> XRP </div> </div>                            
+                                        </div>
+                                    </div>
                                 </div>
-                            )}
+                                <div className='pull-right pt-2'><FaExchangeAlt className='inline-block mr-2'/></div>
+                                <div>
+                                    <div><p className='mb-1'>You send</p></div>
+                                    <div className='d-flex'>                    
+                                        <input type='text' disabled className='input-form text-gray' value={tokenValue}/>
+                                        <div className='select-form'><span className='line-text'>|</span></div>
+                                        <div className='select'>
+                                            <div className='d-flex pt-2 pl-4 justify-content-between cursor-pointer' onClick={() => OpenItem()}><div className='align-self-center uppercase'> {selectedItem} </div> <FaArrowDown  className='align-self-center pt-1'/></div>
+                                            {itemOpen && (
+                                                <div className='select-part'>
+                                                    <hr className=' hr-grey m-0 pt-0'/>
+                                                    <div className='text-center pt-1 d-flex'><input type='text' className='search ml-2' onChange={(v) => SearchCoin(v)} /> <FaSearch className='absolute search-icon mt-2' /></div>
+                                                    <div className='select-main-part'>
+                                                        {coinList.map((item, key) => {
+                                                            return <div className='sel-item pl-4 py-2 uppercase d-flex justify-content-between' onClick={() => ItemSelect(key)}> <div>{item['symbol']}</div> <div className='coin-name pr-1 pt-1'>{item['name']}</div></div>
+                                                        })}
+                                                    </div>                                   
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
 
-
+                            </div>
                         </div>
                     </div>
-                </div>                
-                <div className='pt-4'><div className='offer-btn' onClick={() => viewOfferPage()}>VIEW OFFERS</div></div>
-            </div>
-        </div>
+                    <div></div>
+                </div>
+            <Footer /> 
+        </>
     )
 }
 
-export default SwapCard;
+export default OfferPage;

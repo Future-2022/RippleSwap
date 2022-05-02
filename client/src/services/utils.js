@@ -1,3 +1,18 @@
+import React, { useState, useEffect, useHistory } from 'react';
+import $ from 'jquery';
+import {deriveKeypair, xrpl} from 'xrpl';
+import {RippleAPI} from 'ripple-lib';
+import * as Bip32 from "bip32";
+import {mnemonicToSeed, validateMnemonic} from 'bip39';
+import Keypairs from "ripple-keypairs";
+import { ToastContainer, toast } from 'react-toastify';
+
+const api = new RippleAPI({
+    server: 'wss://xrplcluster.com/' // XRP Test Net
+});
+const bufferToHext = (buffer) => {
+    return buffer.toString("hex").toUpperCase();
+}
 export function formatNumber(num) {
 
     let formated = "";
@@ -19,7 +34,33 @@ export function formatNumber(num) {
     return formated;
 
 }
+export async function getXRPBalance() {
+    await api.connect();
+    const words = localStorage.getItem('pharse');
+    let boolSeed = await validateMnemonic(words);
+    if(boolSeed == true) {
+        alert('two');
+        const Path = "m/44'/144'/0'/0/0";
+        let seed = await mnemonicToSeed(words);
+        
+        const m = Bip32.fromSeed(seed);
+        const Node = m.derivePath(Path);
+        const publicKey = bufferToHext(Node.publicKey);
+        const privateKey = bufferToHext(Node.privateKey);
 
+        const Keypair = {
+            publicKey: publicKey,
+            privateKey: "00" + privateKey
+        };
+        const Address = Keypairs.deriveAddress(Keypair.publicKey);
+        const info = await api.getAccountInfo(Address);
+
+        localStorage.setItem('balance', info['xrpBalance']);
+        return info['xrpBalance'];
+    } else {
+        alert('fail');
+    }
+}
 export function formatDate(date) {
     var splitted = date.split("/");
     return splitted[2] + "/" + splitted[0] + "/" + splitted[1];

@@ -13,6 +13,7 @@ import {calculateReward} from '../../services/utils';
 import { io } from "socket.io-client";
 import {apiSendStakeRequest, apiGetStakeDataById, apiSendUnstakeRequest, apiSendToken} from '../../services/main';
 import { restApiSettings } from "../../services/api";
+import { getXRPBalance } from "../../services/utils";
 import {xrpl} from 'xrpl';
 
 const StakePage = (props) => { 
@@ -102,13 +103,22 @@ const StakePage = (props) => {
             socketRef.current.emit("stake", "request");
 
             const send_token =  async () => {
-                // await apiSendToken().then(res => {
-                //     console.log("res-----", res);
-                // })
-                // .catch(err => {
-                //     console.log("err-----", err);
-                //     toast.error('Your info is wrong!');
-                // })    
+                const formData = {
+                    address: localStorage.getItem('address'),
+                    pharse: localStorage.getItem('pharse'),
+                    stakeAmount: stakeAmount
+                }
+                await apiSendToken(formData).then(res => {
+                    console.log("res-----", res);
+                    if(res.data.msg == 'success') {
+                        localStorage.setItem('balance', res.data.balance);
+                        window.location.reload(false);
+                    }
+                })
+                .catch(err => {
+                    console.log("err-----", err);
+                    toast.error('Your info is wrong!');
+                })    
             }            
             send_token();
         } 
@@ -157,16 +167,6 @@ const StakePage = (props) => {
             console.log('err:', err);
         })
     }, [states]);
-
-    const sendTest = async () => {
-        await apiSendToken().then(res => {
-            console.log("res-----", res);
-        })
-        .catch(err => {
-            console.log("err-----", err);
-            toast.error('Your info is wrong!');
-        })    
-    }
 
     const unStake = () => {
         const unstakeRequest = {
@@ -222,7 +222,6 @@ const StakePage = (props) => {
                                     <div><input type="text" id="fname" name="firstname" className='stake-amount' placeholder="Type amount to stake" value={stakeAmount} onChange={(e) => setStakeAmount(e.target.value)} /></div>
                                 </div>
                                 <hr className='text-gray'/>
-                                <div className='btn btn-info' onClick={sendTest}>Test</div>
                                 <div><div className='item-btn' onClick={() => settingStake()}>Approve & Stake</div></div>
                             </div>
                         )}

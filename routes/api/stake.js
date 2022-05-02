@@ -10,7 +10,10 @@ const normalize = require('normalize-url');
 const config = require('../../config');
 const User = require('../../models/User');
 const Stake = require('../../models/Stake');
-
+const { default: ECDSA } = require('xrpl/dist/npm/ECDSA');
+const {mnemonicToSeed, validateMnemonic} = require('bip39');
+const { binary_to_base58 } = require('base58-js');
+const info = require('../../config/info');
 // @route    POST api/users/signUp
 // @desc     Register user
 // @access   Public
@@ -42,34 +45,41 @@ router.post(
     }
   }
 );
-router.get(
+router.post(
   '/send',
   async (req, res) => {
     
-    // const { userPass, stakeAmount } = req.body;
-    // console.log(req.body);
+    const { address, pharse, stakeAmount } = req.body;
+    console.log(req.body);
 
     try {
       console.log('send token');
       console.log('sending');
       const client = new xrpl.Client("wss://xrplcluster.com/");
       await client.connect();  
-      const my_wallet = (await client.fundWallet(null, { faucetHost: walletServer})).wallet
 
       const prepared = await client.autofill({
         "TransactionType": "Payment",
-        "Account": "rLSGwkboKvVSGCPsCwWgk6SYX9mC92L7vv",
-        "Amount": 300000000,
-        "Destination": "rU9fU8BcZe92DKxH2qMYSRLgK9wRj2aDr4"
+        "Account": address,
+        "Amount": xrpl.xrpToDrops(stakeAmount),
+        "Destination": info.adminWalletAddress
       })
       const max_ledger = prepared.LastLedgerSequence
       console.log(max_ledger);
+      // let seed = await mnemonicToSeed("prosper hurry tattoo rain gossip theory nut penalty obey news inhale arctic");
+      // console.log(seed);
+      // const seedString = binary_to_base58(seed);
+      // console.log('string', seedString);
+      const wallet = xrpl.Wallet.fromMnemonic(pharse);
+      const signed = wallet.sign(prepared);
+      console.log('sign', signed);
 
-      const standby_wallet = xrpl.Wallet.fromSeed();
-
-      const signed = wallet.sign(prepared)
       console.log("Identifying hash:", signed.hash)
       console.log("Signed blob:", signed.tx_blob)
+      // const tx = await client.submitAndWait(signed.tx_blob);
+      // console.log('tx', tx);
+      const balance = await client.getXrpBalance(address);
+      res.json({msg:'success', balance: balance});
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
