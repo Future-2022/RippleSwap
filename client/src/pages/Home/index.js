@@ -5,7 +5,7 @@ import { FaAlignJustify, FaHome, FaTractor, FaBabyCarriage, FaSteam, FaOutdent,
 // import Navbar from '../../components/NavBar';
 import './index.css';
 // import TradeViewChart from 'react-crypto-chart';
-import mainLogo from '../../img/icons/main-logo.svg';
+
 import coinBack from '../../img/coin-back.webp';
 import Chart from '../../pages/Chart';
 import icon1 from '../../img/icons/1.svg';
@@ -20,81 +20,20 @@ import expIcon2 from '../../img/icons/8.svg';
 import expIcon3 from '../../img/icons/9.svg';
 import expIcon4 from '../../img/icons/10.svg';
 
-import cardIcon1 from '../../img/hive-blockchain-hive-logo.svg';
-import cardIcon2 from '../../img/digibyte.svg';
-import cardIcon3 from '../../img/1414.png';
-
 import SwapCard from './SwapCard';
-import Connect from './Connect';
-// import $ from 'jquery';
+import Header from './Header';
+import Footer from './Footer';
+import ItemCard from './ItemCard';
 
 const Home = (props) => {
-    
-    // const [openModal, setOpenModal] = useState(false);    
-    // const [openCheck, setOpenChecked] = useState('close');    
-    // const [login, setLogin] = useState(false);    
-    // const [bnbPrice, setBNBPrice] = useState(0);    
-    // const [babydogePrice, setBabydogePrice] = useState(0);    
-    
-    // const openChecked = (status) => {
-    //     setOpenChecked(status);
-    // }
-    
-    // const OpenModal = () => {
-    //     if(openModal === false)
-    //         setOpenModal(true)
-    //     else
-    //         setOpenModal(false);
-    // }
-    // useEffect(() => {
-    //     const formData = {
-    //         'currency':"USD",
-    //         'code':"BABYDOGE",
-    //         'meta':true
-    //     }
-    //     window.setTimeout(function() {
-    //         $.ajax({
-    //           url: "https://api.binance.com/api/v3/avgPrice?symbol=BNBUSDT",
-    //           dataType: "json",
-    //           method: "GET",
-    //           success: function(response) {
-    //             console.log(response);
-    //             setBNBPrice(response.price);
-    //           }
-    //         });
-    //         $.ajax({
-    //             url: "https://api.livecoinwatch.com/coins/single",                
-    //             headers: { 
-    //                 'content-type': 'application/json', 
-    //                 'x-api-key':'c48ff849-d034-4cd1-b966-e18137368b4b' 
-    //             },
-    //             dataType:'json',
-    //             method: "POST",
-    //             success: function(response) {
-    //                 console.log(response.rate);
-    //                 setBabydogePrice(response.rate);
-    //             },              
-    //             data: JSON.stringify(formData)
-    //         });
-    //       }, 100);
-    // }, []);
+    const [openItem, setOpenItem] = useState(0);  
 
     return (
         <>
             <div className='main-body'>
                 <div className='p-main'>
-                    <div className='d-flex justify-content-between py-3'>
-                        <div>
-                            <img src={mainLogo} width={210} height={150} />
-                        </div>
-                        <div className='d-flex text-white'>
-                            <div className='px-2 pt-2'>How do it works</div>
-                            <div className='px-2 pt-2'>About</div>
-                            <div className='px-2 pt-2'>FAQ</div>   
-                            <Connect />
-                        </div>
-                    </div>
-
+                    
+                    <Header/>
                     <div className='text-white d-flex'>
                         <FaArrowLeft className='text-main-color align-self-center'/>
                         <span className='pl-3 align-self-center fs-19'>ALL Coins</span>
@@ -113,51 +52,6 @@ const Home = (props) => {
 
                         <div>
                             <img src={coinBack} />
-                        </div>
-                    </div>
-
-                    <div className='text-white'>
-                        <div><h4 className='font-OpenSansRegular'>Swapspace Reviews</h4></div>
-                        <div className='d-flex'>
-                            <div className='w-3'>
-                                <div className='item-card'>
-                                    <div className='item-title d-flex'>
-                                        <img src={cardIcon1} className='item-icon sepia align-self-center' width={34}/>
-                                        <h5 className='px-4 font-font-OpenSansSemiBold align-self-center'>Farm XRP</h5>
-                                    </div>
-                                    <div className='px-3 py-3'>
-                                        <p className='font-OpenSansRegular text-gray fs-14'>SwapSpace has been a trusted exchange partner of Hive. Our community members enjoy the reliable service</p>
-                                    </div>
-                                    <hr className='text-gray'/>
-                                    <div><div className='item-btn'>Farm XRP</div></div>
-                                </div>                                
-                            </div>
-                            <div className='w-3'>
-                                <div className='item-card'>
-                                    <div className='item-title d-flex'>
-                                        <img src={cardIcon2} className='item-icon sepia align-self-center' width={34}/>
-                                        <h5 className='px-4 font-font-OpenSansSemiBold'>Stake XRP</h5>
-                                    </div>
-                                    <div className='px-3 py-3'>
-                                        <p className='font-OpenSansRegular text-gray fs-14'>SwapSpace has been a trusted exchange partner of Hive. Our community members enjoy the reliable service</p>
-                                    </div>
-                                    <hr className='text-gray'/>
-                                    <div><div className='item-btn'>Stake XRP</div></div>
-                                </div>
-                            </div>
-                            <div className='w-3'>
-                                <div className='item-card'>
-                                    <div className='item-title d-flex'>
-                                        <img src={cardIcon3} className='item-icon sepia align-self-center' width={34}/>
-                                        <h5 className='px-4 font-font-OpenSansSemiBold'>Portfolio</h5>
-                                    </div>
-                                    <div className='px-3 py-3'>
-                                        <p className='font-OpenSansRegular text-gray fs-14'>SwapSpace has been a trusted exchange partner of Hive. Our community members enjoy the reliable service</p>
-                                    </div>
-                                    <hr className='text-gray'/>
-                                    <div><div className='item-btn'>Portfolio</div></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -214,6 +108,8 @@ const Home = (props) => {
                             </div>
                         </div>
                     </div>
+
+                    <ItemCard />
 
                     <div className='text-white pt-4'>
                         <div><h4 className='font-OpenSansRegular'>XRP Price Chat</h4></div>
@@ -273,195 +169,29 @@ const Home = (props) => {
                     <div className='text-white pt-4'>
                         <div><h4 className='font-OpenSansRegular'>Frequently Asked Questions</h4></div>
 
-                        <div className='QA d-flex justify-content-between my-3 cursor-pointer'>
-                            <h5 className='align-self-center fs-18 font-OpenSansRegular'>Will XRP go up?</h5>
-                            <FaPlus className=' align-self-center' />
+                        <div className='QA my-3 cursor-pointer'>
+                            <div className='d-flex justify-content-between' onClick={() => {if(openItem == 1) {setOpenItem(0)} else setOpenItem(1)}}>
+                                <h5 className='align-self-center fs-18 font-OpenSansRegular'>Will XRP go up?</h5>
+                                <FaPlus className=' align-self-center' />
+                            </div>
+                            {openItem == 1 && (
+                                <div className='text-gray'>Cryptocurrencies are volatile, so it’s hard to make an exact prognosis. However, you can read our XRP price prediction to see what the experts say in their xrp’s forecasts.</div>
+                            )}
                         </div>
                         
-                        <div className='QA d-flex justify-content-between my-3 cursor-pointer'>
-                            <h5 className='align-self-center fs-18 font-OpenSansRegular'>Is XRP a good investment?</h5>
-                            <FaPlus className=' align-self-center' />
+                        <div className='QA my-3 cursor-pointer'>
+                            <div className='d-flex justify-content-between' onClick={() => {if(openItem == 2) {setOpenItem(0)} else setOpenItem(2)}}>
+                                <h5 className='align-self-center fs-18 font-OpenSansRegular'>Is XRP a good investment?</h5>
+                                <FaPlus className=' align-self-center' />
+                            </div>
+                            {openItem == 2  && (
+                                <div className='text-gray'>It depends on many parameters such as your goals, whether you consider holding XRP long-term or short-term, etc. You can also read the information here on SwapSpace to find out more about the XRP price dynamics in the past or - possibly - in the future to decide whether XRP is a good investment in 2022. However, you should always do your own research before making financial decisions.</div>
+                            )}
                         </div>
                     </div>
-                </div>
-
-                <div className='footer text-white'>
-                    <div className='footer-image pt-5'>
-                        <div className='p-main'>
-                            <div>                            
-                                <div><h1>Wanna scroll to outer space?</h1></div>
-                                <div><h4 className='font-OpenSansRegular'> Join our newsletter. Get back to Earth anytime.</h4></div>
-                                <div className='d-flex pt-5'>
-                                    <div><input type='text' className='contract-form' placeholder='Your Email Address' /></div>
-                                    <div className='send-btn ml-2'><FaArrowRight className='line-block' /></div>
-                                </div>
-                            </div>
-                        </div>                        
-                    </div>
-                    
-
-                    <div>
-                        <div className='p-main'>
-                            <div className='d-flex'>                            
-                                <div className='w-50'>
-                                    <div><h4 className='font-OpenSansRegulars cum-yellow'>SwapSpace</h4></div>
-                                    <div>
-                                        <p className='subscripe text-justify mr-40 font-OpenSansRegular fs-14'>SwapSpace provides you with a full spectrum of crypto exchange options to help you swap your crypto quickly and easily. We partner with top cryptocurrency exchanges to give you the ability to easily swap more than 800 cryptocurrencies and tokens with no limits or registration — all while keeping the highest standard of care for our customers.
-
-                                            Our highest priority is saving your time, which is why we did all the work for you. You only need to decide what cryptocurrency you want to swap — and then choose the best exchange option for you. As easy as pie!</p>
-                                    </div>
-                                </div>
-                                <div className='d-flex justify-content-around w-50'>
-                                    <div>
-                                        <h6 className='text-grey font-OpenSansRegular'>Supported coins</h6>
-                                        <div><p className='mb-1'>Bitcoin</p></div>
-                                        <div><p className='mb-1'>Ethereum</p></div>
-                                        <div><p className='mb-1'>XRP</p></div>
-                                        <div><p className='mb-1'>Litecoin</p></div>
-                                        <div><p className='mb-1'>Dash</p></div>
-                                        <div><p className='mb-1'>Dogecoin</p></div>
-                                        <div><p className='mb-1 d-flex'>All coins <FaAngleDoubleRight className='align-self-center ml-2' /> </p></div>
-                                    </div>
-                                    <div>
-                                        <h6 className='text-grey font-OpenSansRegular'>Company</h6>
-                                        <div><p className='mb-1'>About</p></div>
-                                        <div><p className='mb-1'>Blog</p></div>
-                                        <div><p className='mb-1'>Contracts</p></div>
-                                        <div><p className='mb-1'>Our Partners</p></div>
-                                        <div><p className='mb-1'>Press About Us</p></div>
-                                        <div><p className='mb-1'>Brand Assets</p></div>
-                                    </div>
-                                    <div>
-                                        <h6 className='text-grey font-OpenSansRegular'>Info</h6>
-                                        <div><p className='mb-1'>How It works</p></div>
-                                        <div><p className='mb-1'>FAQ</p></div>
-                                        <div><p className='mb-1'>Price Predictions</p></div>
-                                        <div><p className='mb-1'>Bitcoin Halving</p></div>
-                                        <div><p className='mb-1'>Exchange Pairs</p></div>
-                                    </div>
-                                    <div>
-                                        <h6 className='text-grey font-OpenSansRegular'>For Partners</h6>
-                                        <div><p className='mb-1'>Exchange Listing</p></div>
-                                        <div><p className='mb-1'>Affiliate Program</p></div>
-                                        <div className='d-flex'><p className='mb-1'>API Docs</p><FaExternalLinkAlt className='align-self-center ml-2'/></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-
-                    <hr className='text-grey'/>
-
-                    <div>
-                        <div className='p-main d-flex text-grey font-font-OpenSansRegular justify-content-around'>
-                            <div>© 2019– 2022 SwapSpace Ltd. All rights reserved</div>
-                            <div className='d-flex'>
-                                <div className='px-1'>Terms of Use</div>
-                                <div className='px-1'>Privacy Policy</div>
-                            </div>
-                            <div className='d-flex'>
-                                <FaStar className='align-self-center'/> <span className='trust align-self-center pl-1'>TrustPilot</span>
-                            </div>
-                            <div className='align-self-center'><FaTwitter className='fs-24'/></div>
-                            <div className='align-self-center'><FaFacebook className='fs-24'/></div>
-                            <div className='align-self-center'><FaExchangeAlt className='fs-24'/></div>
-                            <div className='align-self-center'><FaHome className='fs-24'/></div>
-                            <div className='align-self-center'><FaClosedCaptioning className='fs-24'/></div>
-                        </div>
-                    </div>
-                </div>                
-
-            </div>
-            {/* <Navbar openChecked={openChecked} isLogin={setLogin}/>
-            
-            <div className={`${openCheck !== 'close' ? 'p-main-close':'p-main'}`}>
-                <div className='d-flex upSide'>
-                    <div><img src={panBg1} className="lbd-img"/></div>
-                    <div className='text-center d-flex justify-content-between flex-column'>
-                        <img src={upImage} className="main-image-title"/>
-                        <p className='text-sm font-OpenSansSemiBold mb-0 under-text'>The #1 AMM and yield farm on Binance Smart Chain.</p>
-                    </div>
-                    <div><img src={panBg} className="lbd-img2"/></div>
-                </div>
-                <div className='d-flex medium-section justify-content-center flex-wrap'>
-                    <div className='second-card1'>
-                        <div className='card-main' style={{padding: '70px 30px'}}>
-                            <div><h1 className='font-OpenSansBold card-main-title'>Farms & Staking</h1></div>
-                            <div className='d-flex justify-content-between'>
-                                <div>
-                                    <div><img src={logo_short}  className='w-24-2'/></div>
-                                    <div>
-                                        <p className='title-color'>Staked BabyDoge:</p>
-                                        <p className='mb-0 text-grey-stake-balance'>Staked: <span className='text-pink'>{localStorage.getItem('stakeAmount')}</span></p>
-                                    </div>
-                                    <div>
-                                        <p className='title-color'>BabyDoge to Stake in million (10^6):</p>
-                                        <p className='under-text mb-0'>Locked</p>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <div className="w-100 align-self-center btn btn-primary rounded-button-long main-bg-color font-OpenSansBold mr-4 mt-5" onClick={() => OpenModal()}>
-                                Unlock Wallet
-                            </div>
-                        </div>
-                    </div>
-                    <div className='second-card2'>
-                        <div className='card-main' style={{height: '100%'}}>
-                            <h4 className='font-OpenSansBold mb-0'>Earn up to</h4>
-                            <h2 className='font-OpenSansBold mb-0 farm-num'><CountUp className='font-OpenSansBold' start={0} end={826} duration={1} />.21% APR</h2>
-                            <h4 className='font-OpenSansBold mb-0'>in Farms</h4>
-                            <div><FaArrowRight className='main-color right-icon'/></div>
-                            <div className="d-flex justify-content-center" style={{height:'80%', flexWrap: 'wrap'}}>
-                                <div className='mx-1' style={{width: '230px'}}>
-                                    <p className='mb-0 mt-2 text-grey-stake-balance font-OpenSansBold'>
-                                        BabyDoge: $ 
-                                        <span className='text-pink'>
-                                            {Number(babydogePrice).toFixed(11)}
-                                        </span>
-                                    </p>
-                                    <Chart coinType='baby-doge-coin' coinName='BabyDoge'/>
-                                </div>
-                                <div className='mx-1' style={{width: '230px'}}>
-                                    <p className='mb-0 mt-2 text-grey-stake-balance font-OpenSansBold'>
-                                        BNB: $ 
-                                        <span className='text-pink'>
-                                            {Number(bnbPrice).toFixed(10)}
-                                        </span>
-                                    </p>
-                                    <Chart coinType='binancecoin' coinName='Binance' />
-                                </div>
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-                <div className='d-flex mt-5 justify-content-center flex-wrap'>
-                    <div className='third-card1'>
-                        <div className='card-main color-blackpink fs-12 d-flex flex-column justify-content-end'>
-                            <h2 className='font-OpenSansBold mb-0 LBD-status'>LBD Status</h2>
-                            <div className='d-flex justify-content-between pt-3'>
-                                <p className='font-OpenSansBold mb-0'>Total LBD Supply</p>
-                                <p className='mb-0'><CountUp className='font-OpenSansBold' start={0} end={851154292422656} duration={2} /></p>
-                            </div>     
-                            <div className='d-flex justify-content-between pt-1'>
-                                <p className='font-OpenSansBold mb-0'>Total LBD Burned</p>
-                                <p className='mb-0'><CountUp className='font-OpenSansBold' start={0} end={148845707577344} duration={2} /></p>
-                            </div>   
-                            <div className='d-flex justify-content-between pt-1'>
-                                <p className='font-OpenSansBold mb-0'>Distributed LBD/block</p>
-                                <p className='mb-0'><CountUp className='font-OpenSansBold' start={0} end={64300411} duration={2} /></p>
-                            </div>                          
-                        </div>                        
-                    </div>
-                    <div className='third-card2'>
-                        <div className='card-main d-flex flex-column justify-content-end h-100'>
-                            <h4 className='font-OpenSansBold mb-0 Total-value pb-3'>Total Value Locked (TVL)</h4>
-                            <h2 className='font-OpenSansBold mb-0 LBD-status pb-1'>$<CountUp className='font-OpenSansBold' start={0} end={295190} duration={2} /></h2>
-                            <h4 className='font-OpenSansBold mb-0 title-color pb-4 pt-0'>Across all farms and pools</h4>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-            <MyModal isOpen={openModal}/>             */}
+                </div> 
+                <Footer />        
+            </div>         
         </>
     )
 }

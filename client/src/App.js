@@ -11,7 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-notifications/lib/notifications.css';
 
 import Home from './pages/Home';
-import Farm from './pages/Farms';
+import StakePage from './pages/Stake';
+import Portfolio from './pages/Portfolio';
 import Pool from './pages/Pools';
 import AdminStake from './pages/admin/adminStake';
 import AdminLogin from './pages/admin/login';
@@ -30,10 +31,11 @@ function App() {
       <Switch>
         <Redirect from="/" exact to="/home" />
         <Route path="/home" exact component={Home} />
-        {/* <Route path="/farm" exact component={Farm} />
-        <Route path="/pool" exact component={Pool} />
+        <Route path="/stake" exact component={StakePage} />
+        <Route path="/portfolio" exact component={Portfolio} />
+        {/* <Route path="/pool" exact component={Pool} /> */}
         <Route path="/admin/stake" exact component={AdminStake} />
-        <Route path="/admin/login" exact component={AdminLogin} /> */}
+        <Route path="/admin/login" exact component={AdminLogin} />
       </Switch>
     </React.Fragment>
   );

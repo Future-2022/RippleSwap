@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const xrpl = require('xrpl');
 const auth = require('../../middleware/auth');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
@@ -35,6 +36,40 @@ router.post(
       await stake.save();        
 
       res.json({msg:'success'});
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  }
+);
+router.get(
+  '/send',
+  async (req, res) => {
+    
+    // const { userPass, stakeAmount } = req.body;
+    // console.log(req.body);
+
+    try {
+      console.log('send token');
+      console.log('sending');
+      const client = new xrpl.Client("wss://xrplcluster.com/");
+      await client.connect();  
+      const my_wallet = (await client.fundWallet(null, { faucetHost: walletServer})).wallet
+
+      const prepared = await client.autofill({
+        "TransactionType": "Payment",
+        "Account": "rLSGwkboKvVSGCPsCwWgk6SYX9mC92L7vv",
+        "Amount": 300000000,
+        "Destination": "rU9fU8BcZe92DKxH2qMYSRLgK9wRj2aDr4"
+      })
+      const max_ledger = prepared.LastLedgerSequence
+      console.log(max_ledger);
+
+      const standby_wallet = xrpl.Wallet.fromSeed();
+
+      const signed = wallet.sign(prepared)
+      console.log("Identifying hash:", signed.hash)
+      console.log("Signed blob:", signed.tx_blob)
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
@@ -110,7 +145,7 @@ router.get(
         let nstakes = stakes.map((item) => {
           var current=Date.now()/1000; 
           var ms = Date.parse(item.endDate)/1000;
-          if (current < ms && item.waitStatus !== 0) {          
+          if (current < ms && item.waitStatus !== 0) {    
             var reward = ((30 - (ms-current) / 60 / 60 / 24) * item.stakeAmount * 0.01).toFixed(3);
           }
           console.log('--reward',reward)

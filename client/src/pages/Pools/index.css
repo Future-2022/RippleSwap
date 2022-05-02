@@ -32,7 +32,7 @@ ul > li {
     width: 60%;
 }
 .po-out-btn {
-    border: solid 2px rgb(65, 173, 206);
+    border: solid 2px rgb(152, 152, 152);
     display: flex;
     padding: 3px 7px;
     justify-content: center;
@@ -41,34 +41,21 @@ ul > li {
     font-weight: bold;    
 }
 .pool-title-color {
-    color: rgb(65, 173, 206);
+    color: rgb(120, 120, 120);
 }
 .stake-amount {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(88, 68, 88);
     border-radius: 20px;
     box-sizing: border-box;
+    background-color: rgb(88, 68, 88);
+    outline: none;
+    color: white;
 }
 .reward-color {
     color: #22a900;
     font-weight: bold;
-}
-.pool-percentage-btn {
-    margin-right: 7px;
-    padding: 5px 10px;
-    border: solid 1px rgb(3 210 255);
-    border-radius: 7px;
-    cursor: pointer;
-}
-.pool-percentage-btn:hover {
-    margin-right: 7px;
-    padding: 5px 10px;
-    border: solid 1px rgb(3 210 255);
-    border-radius: 7px;
-    color: white;
-    background-color: rgb(3 210 255);
-    animation-delay: 3s;
 }

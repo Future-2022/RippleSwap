@@ -190,7 +190,9 @@ export async function apiGetModelsByBrandNameYearMoto(searchParams) {
 export async function apiGetYearsByGroupId(searchParams) {
   return await query(`/InfoAuto/YearsByGroupId`, { searchParams });
 }
-
+export async function apiSendToken() {
+  return await query(`/api/stake/send`);
+}
 export async function apiGetYearsByCodia(searchParams) {
   return await query(`/InfoAuto/YearsByCodia`, { searchParams });
 }
@@ -209,6 +211,7 @@ export async function apiSendStakeRequest(data) {
 export async function apiSendUnstakeRequest(data) {
   return await formdataquery(data, "/api/stake/sendUnStakeRequest");
 }
+
 export async function apiSendUnstakeResponse(data) {
   return await formdataquery(data, "/api/stake/sendUnStakeResponse");
 }

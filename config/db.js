@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const db = 'mongodb://localhost:27017/littlebabydoge';
+const db = 'mongodb://localhost:27017/rippleSwap';
 const connectDB = async () => {
   mongoose.connect(db, {
       useUnifiedTopology: true,

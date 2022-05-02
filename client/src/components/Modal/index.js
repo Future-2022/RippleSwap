@@ -45,6 +45,7 @@ const MyModal = ({isOpen, action, propPharse}) => {
     }, [isOpen]);
     const closeModal = () => {
         setOpenModal(false);
+        window.location.reload(false);
     }
     const ConnectWallet = () => {
         propPharse(pharse);
