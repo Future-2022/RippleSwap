@@ -7,7 +7,7 @@ import './index.css';
 // import TradeViewChart from 'react-crypto-chart';
 import mainLogo from '../../img/icons/main-logo.svg';
 import coinBack from '../../img/coin-back.webp';
-
+import Chart from '../../pages/Chart';
 import icon1 from '../../img/icons/1.svg';
 import icon2 from '../../img/icons/2.svg';
 import icon3 from '../../img/icons/3.svg';
@@ -24,8 +24,8 @@ import cardIcon1 from '../../img/hive-blockchain-hive-logo.svg';
 import cardIcon2 from '../../img/digibyte.svg';
 import cardIcon3 from '../../img/1414.png';
 
-import footerImg from '../../img/footer-back.webp';
-
+import SwapCard from './SwapCard';
+import Connect from './Connect';
 // import $ from 'jquery';
 
 const Home = (props) => {
@@ -88,9 +88,10 @@ const Home = (props) => {
                             <img src={mainLogo} width={210} height={150} />
                         </div>
                         <div className='d-flex text-white'>
-                            <div className='px-2'>How do it works</div>
-                            <div className='px-2'>About</div>
-                            <div className='px-2'>FAQ</div>
+                            <div className='px-2 pt-2'>How do it works</div>
+                            <div className='px-2 pt-2'>About</div>
+                            <div className='px-2 pt-2'>FAQ</div>   
+                            <Connect />
                         </div>
                     </div>
 
@@ -100,41 +101,7 @@ const Home = (props) => {
                     </div>
 
                     <div className='d-flex text-white pt-3'>
-                        <div className='swap-card'>
-                            <div className='py-3 px-4'>
-                                <div>
-                                    <div><p className='mb-1'>You send</p></div>
-                                    <div className='d-flex'>
-                                        <input type='text' className='input-form'/>
-                                        <div className='select-form'><span className='line-text'>|</span></div>
-                                        <div className='select'>
-                                            <select className="get-type" name="getType">
-                                                <option value="BTC">BTC</option>
-                                                <option value="ETH">ETH</option>
-                                                <option value="BNB">BNB</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='pull-right pt-2'><FaExchangeAlt className='inline-block mr-2'/></div>
-                                <div>
-                                    <div><p className='mb-1'>You send</p></div>
-                                    <div className='d-flex'>
-                                        <input type='text' disabled className='input-form text-gray' value={2352.34}/>
-                                        <div className='select-form'><span className='line-text'>|</span></div>
-                                        <div className='select'>
-                                            <select className="get-type" name="getType">
-                                                <option value="BTC">XRP</option>
-                                                <option value="ETH">ETH</option>
-                                                <option value="BNB">BNB</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='pt-4'><div className='offer-btn'>VIEW OFFERS</div></div>
-                            </div>
-                        </div>
-
+                        <SwapCard />
                         <div className='main-title'>
                             <div><h1>Exchage XRP</h1></div>
                             <div>
@@ -254,7 +221,8 @@ const Home = (props) => {
                                 Here you can see the current price of XRP, as well as XRP price history.
                             </p>
                         <div className='xrp-chart'>
-                            <p className='p-4'>xrp/USDT</p>
+                            <p className='pt-4 pl-4'>xrp/USDT</p>
+                            <div className='pl-5'><Chart coinType='ripple' coinName='Ripple' /></div>
                         </div>
                     </div>
 

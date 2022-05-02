@@ -46,9 +46,10 @@
     margin-left: 10px;
 }
 .select {
-    width: 45%;
+    width: 95%;
     background-color: #27212b;
     padding-right: 12px;
+    position: relative;
 }
 .pull-right {
     text-align: right;
@@ -87,6 +88,9 @@
     height: 250px;
     border-radius: 15px;
 }
+.item-card:hover {
+    background-color: #4c384a;
+}
 .item-title {
     color: bisque;
 }
@@ -99,7 +103,7 @@
     padding: 8px;
 }
 .item-btn:hover {
-    background-color: #2d373e43;
+    background-color: #3e4b5443;
     animation: animateGlow 2s ease 1;
     color: rgb(168, 129, 193);
 }
@@ -117,9 +121,14 @@
 .cum-red {
     color: #e35760;
 }
+.recharts-cartesian-axis-tick {    
+    font-size: 1.4rem;
+    font-family: Roboto, sans-serif;
+    color: white!important;
+}
 .xrp-chart {
-    height: 300px;
-    background-color: #1e222d;
+    height: 400px;
+    background-color: #222222;
 }
 .line-height-4 {
     line-height: normal;
@@ -188,4 +197,60 @@
 }
 .mr-40 {
     margin-right: 40px;
+}
+.pt-25 {
+    padding-top: 17px;
+}
+.select-part {
+    position: absolute;
+    background: #27212b;
+    width: 100%;
+    right: 0px;
+    z-index: 3;
+    top: 47px;
+}
+.select-main-part {
+    height: 300px;
+    overflow: auto;
+}
+.search {
+    background-color: #27212b;
+    width: 90%;
+    border: solid 1px rgb(40,40,40);
+    padding: 7px 12px;
+    outline: none;
+    border-radius: 9px;
+}
+.sel-item:hover {
+    background-color: #48374f;
+}
+.search-icon {
+    position:absolute;
+    right: 14px;
+    color: #4c3a53;
+}
+.coin-name {
+    font-size: 10px;
+    color: #48374f;
+}
+.w-180 {
+    width: 180px;
+    background-color: #392937;
+    border: #60475e;
+}
+.w-180:hover {
+    width: 180px;
+    background-color: #4d374a;
+    border: #60475e;
+}
+.connect-btn-part {
+    background-color: #392937;
+    color: white;
+    width: 180px;
+}
+.connect-btn-part>div {
+    padding: 10px 15px;
+}
+.connect-btn-part>div:hover {
+    background-color: #674a63;
 }

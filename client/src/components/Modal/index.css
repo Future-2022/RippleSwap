@@ -21,13 +21,25 @@ body {
     background: rgb(0, 183, 223); 
   }
 .list-wallet {
-    background-color: rgb(12, 96, 171);
+    background-color: rgb(80 62 95);
     padding: 10px 25px;
     border-radius: 16px;
     margin: 12px 0px;
 }
+.submit-button {
+    width: 180px;
+    background-color: #914188;
+    border: #60475e;
+    color: white;
+}
+.submit-button:hover {
+    width: 180px;
+    background-color: #7f4175;
+    border: #60475e;
+    color: white;
+}
 .list-wallet:hover {
-    background-color: rgb(18, 116, 201);
+    background-color: rgb(126, 98, 149);
     padding: 10px 25px;
     border-radius: 16px;
     margin: 12px 0px;

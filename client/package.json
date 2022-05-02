@@ -36,12 +36,14 @@
     "react-scripts": "^4.0.3",
     "react-switch": "^6.0.0",
     "react-toastify": "^8.1.1",
+    "ripple-lib": "^1.10.0",
     "socket.io-client": "^4.4.1",
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.4",
     "web3": "^1.7.0",
     "web3-eth": "^1.7.0",
-    "web3-eth-accounts": "^1.7.0"
+    "web3-eth-accounts": "^1.7.0",
+    "xrpl": "^2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

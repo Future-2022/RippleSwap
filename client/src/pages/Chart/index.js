@@ -59,8 +59,8 @@ const Chart = ({coinType, coinName}) => {
                             to='MediumSeaGreen'
                             toOpacity={0}
                         />
-                        <AnimatedAxis orientation="bottom" numTicks={3} label='Date and time' />
-                        <AnimatedAxis orientation="left" numTicks={3} label='Token Price $' />
+                        <AnimatedAxis orientation="bottom" numTicks={3} />
+                        <AnimatedAxis orientation="left" numTicks={3} />
                         <AnimatedGrid columns={false} numTicks={0} />
                         <AnimatedAreaSeries 
                             dataKey="Line 1" data={mappedData.splice(0, 30)} {...accessors} 
@@ -98,6 +98,42 @@ const Chart = ({coinType, coinName}) => {
                         />
                         <AnimatedAxis orientation="bottom" numTicks={3} label='Date and time'/>
                         <AnimatedAxis orientation="left" numTicks={3}/>
+                        <AnimatedGrid columns={false} numTicks={0} />
+                        <AnimatedAreaSeries 
+                            dataKey="Line 1" data={mappedData.splice(0, 30)} {...accessors} 
+                            // strokeWidth={1}
+                            // stroke="url(#area-gradient)"
+                            fill="url(#area-gradient)"    
+                        />
+                        <Tooltip
+                            snapTooltipToDatumX
+                            snapTooltipToDatumY
+                            showVerticalCrosshair
+                            showSeriesGlyphs
+                            renderTooltip={({ tooltipData, colorScale }) => (
+                            <div>
+                                <div style={{ fontSize:'15px', color: colorScale(tooltipData.nearestDatum.key), padding:'5px 0px' }}>
+                                {coinName} Price
+                                </div>
+                                <span class='text-warning'>Date</span> : {accessors.xAccessor(tooltipData.nearestDatum.datum)}<br/>
+                                <span class='text-info'>Price</span> : {accessors.yAccessor(tooltipData.nearestDatum.datum)}
+                            </div>
+                            )}
+                        />
+                    </XYChart>
+                )}
+                {coinType === 'ripple' && mappedData[0] && (
+                    <XYChart width={1200} height={300} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [mappedData[0].price - 0.03, mappedData[0].price + 0.03], zero:false }}>
+                    {/* <XYChart width={300} height={250} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [(Number(mappedData[0].price) - 15), (Number(mappedData[0].price) + 15)], zero:false }}> */}
+                        <LinearGradient
+                            id="area-gradient"
+                            from='#1e422d'
+                            fromOpacity={1}
+                            to='#1e222d'
+                            toOpacity={0.5}
+                        />
+                        <AnimatedAxis orientation="bottom" numTicks={3} label='Date and time' style={{fontSize: '3rem', color:'white'}} />
+                        <AnimatedAxis orientation="left" numTicks={3} label='price'/>
                         <AnimatedGrid columns={false} numTicks={0} />
                         <AnimatedAreaSeries 
                             dataKey="Line 1" data={mappedData.splice(0, 30)} {...accessors} 

@@ -17,12 +17,12 @@ import AdminStake from './pages/admin/adminStake';
 import AdminLogin from './pages/admin/login';
 
 
-localStorage.setItem('reward', 0);
+// localStorage.setItem('reward', 0);
 
 function App() {
   const location = useLocation();
   useEffect(() => {
-    localStorage.setItem('reward', 0);
+    // localStorage.setItem('reward', 0);
   }, [location]);
 
   return (
