@@ -69,6 +69,7 @@ const Connect = (props) => {
             };
             const Address = Keypairs.deriveAddress(Keypair.publicKey);
             const info = await api.getAccountInfo(Address);
+            // console.log(Address);
 
             localStorage.setItem('login', 'true');
             localStorage.setItem('address', Address);

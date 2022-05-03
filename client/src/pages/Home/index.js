@@ -104,21 +104,21 @@ const Home = (props) => {
                                 <div><img src={icon1} width={75} /></div>
                                 <div className='pl-4 align-self-center'>
                                     <div className='cum-red pb-0'>24H HIGH</div>
-                                    <div><h4 className='font-OpenSansSemiBold'>$0.647</h4></div>
+                                    <div><h4 className='font-OpenSansSemiBold'>${xrpCoin['high_24h']}</h4></div>
                                 </div>
                             </div>
                             <div className='w-3 d-flex'>
                                 <div><img src={icon2} width={75} /></div>
                                 <div className='pl-4 align-self-center'>
                                     <div className='cum-red pb-0'>XRP MARKET CAP</div>
-                                    <div><h4 className='font-OpenSansSemiBold'>$60,523,701,582.931</h4></div>
+                                    <div><h4 className='font-OpenSansSemiBold'>${xrpCoin['market_cap']}</h4></div>
                                 </div>
                             </div>
                             <div className='w-3 d-flex'>
                                 <div><img src={icon3} width={75} /></div>
                                 <div className='pl-4 align-self-center'>
                                     <div className='cum-red pb-0'>CIRCULATING SUPPLY</div>
-                                    <div><h4 className='font-OpenSansSemiBold'>99,989,594,553 XRP</h4></div>
+                                    <div><h4 className='font-OpenSansSemiBold'>{xrpCoin['circulating_supply']} XRP</h4></div>
                                 </div>
                             </div>
 
@@ -126,21 +126,21 @@ const Home = (props) => {
                                 <div><img src={icon4} width={75} /></div>
                                 <div className='pl-4 align-self-center'>
                                     <div className='cum-red pb-0'>24H LOW</div>
-                                    <div><h4 className='font-OpenSansSemiBold'>$0.5994</h4></div>
+                                    <div><h4 className='font-OpenSansSemiBold'>${xrpCoin['low_24h']}</h4></div>
                                 </div>
                             </div>
                             <div className='w-3 d-flex pt-3'>
                                 <div><img src={icon5} width={75} /></div>
                                 <div className='pl-4 align-self-center'>
                                     <div className='cum-red pb-0'>XRP PRICE</div>
-                                    <div><h4 className='font-OpenSansSemiBold'>$0.6053</h4></div>
+                                    <div><h4 className='font-OpenSansSemiBold'>${xrpCoin['current_price']}</h4></div>
                                 </div>
                             </div>
                             <div className='w-3 d-flex pt-3'>
                                 <div><img src={icon6} width={75} /></div>
                                 <div className='pl-4 align-self-center'>
                                     <div className='cum-red pb-0'>24H VOLUME</div>
-                                    <div><h4 className='font-OpenSansSemiBold'>$84,011,634.908</h4></div>
+                                    <div><h4 className='font-OpenSansSemiBold'>${xrpCoin['total_volume']}</h4></div>
                                 </div>
                             </div>
                         </div>
@@ -153,16 +153,18 @@ const Home = (props) => {
                         <p className='text-gray'>
                             Here you can see the current price of XRP, as well as XRP price history.
                         </p>
-                        <div className='d-flex flex-wrap justify-content-center'>
-                            <div className='xrp-chart'>
-                                <p className='pt-4 pl-4'>xrp/USDT</p>
-                                <div className='pl-3 d-flex'>
-                                    <Chart coinType='ripple' coinName='Ripple' />
-                                </div>
-                            </div>    
-                            {console.log(xrpCoin)}     
+                        <div>
+                            <div className='py-3'>
+                                <div className='xrp-chart'>
+                                    <p className='pt-4 pl-4'>xrp/USDT</p>
+                                    <div className='pl-3 d-flex'>
+                                        <Chart coinType='ripple' coinName='Ripple' />
+                                    </div>
+                                </div>    
+                            </div>
+                            {/* {console.log(xrpCoin)}     
                             {xrpCoin && (
-                                <div className='d-flex px-3 price-part'>
+                                <div className='d-flex px-3 price-part py-3'>
                                     <div className='d-flex flex-column m-auto main-price-part'>
                                         <div className='d-flex justify-content-between'><img src={xrpCoin['image']} width={40} className=' img-thumbnail' /><h3 className='pl-4'>XRP Coin</h3></div>
                                         <hr />
@@ -173,7 +175,7 @@ const Home = (props) => {
                                         <p className='text-yellow d-flex justify-content-between'><span className='text-white font-OpenSansRegular pr-4'>Last Update</span> {xrpCoin['last_updated']}</p>
                                     </div>
                                 </div>
-                            )}    
+                            )}     */}
                         </div>
                     </div>
 

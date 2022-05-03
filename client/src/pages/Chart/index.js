@@ -43,13 +43,8 @@ const Chart = ({coinType, coinName}) => {
 
     return (
         <>
-            <div style={{
-                width: '200px',
-                height: '200px'
-            }}>
             {mappedData[0] && console.log(mappedData[0]['price'])}
                 {coinType === 'baby-doge-coin' && mappedData[0] && (
-                    <>
                     
                     <XYChart strokeWidth={1.5} fill={`url(#gradient)`} width={300} height={250} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [mappedData[0]['price']-0.00000000005, mappedData[0]['price']+0.00000000005], zero:false }}>
                         <LinearGradient
@@ -84,10 +79,9 @@ const Chart = ({coinType, coinName}) => {
                             )}
                         />
                     </XYChart>
-                    </>
                 )}
                 {coinType === 'binancecoin' && mappedData[0] && (
-                    <XYChart width={300} height={250} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [mappedData[0].price - 7, mappedData[0].price + 7], zero:false }}>
+                    <XYChart width={1200} height={250} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [mappedData[0].price - 7, mappedData[0].price + 7], zero:false }}>
                     {/* <XYChart width={300} height={250} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [(Number(mappedData[0].price) - 15), (Number(mappedData[0].price) + 15)], zero:false }}> */}
                         <LinearGradient
                             id="area-gradient"
@@ -123,8 +117,7 @@ const Chart = ({coinType, coinName}) => {
                     </XYChart>
                 )}
                 {coinType === 'ripple' && mappedData[0] && (
-                    <XYChart width={340} height={270} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [mappedData[0].price - 0.03, mappedData[0].price + 0.03], zero:false }}>
-                    {/* <XYChart width={300} height={250} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [(Number(mappedData[0].price) - 15), (Number(mappedData[0].price) + 15)], zero:false }}> */}
+                    <XYChart height={270} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [mappedData[0].price - 0.03, mappedData[0].price + 0.03], zero:false }}>
                         <LinearGradient
                             id="area-gradient"
                             from='rgb(3, 175, 232)'
@@ -157,8 +150,7 @@ const Chart = ({coinType, coinName}) => {
                             )}
                         />
                     </XYChart>
-                )}
-            </div>          
+                )}     
         </>
     )
 }

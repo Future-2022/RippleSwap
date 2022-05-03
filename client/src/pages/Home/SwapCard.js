@@ -101,8 +101,8 @@ const SwapCard = (props) => {
                 method: "GET",
                 success: function(response) {
                     xrpPrice = response['price'];
-                    console.log('xrpPrice', xrpPrice);
-                    console.log('tokenPrice', tokenPrice);
+                    console.log('xrpPrice------', xrpPrice);
+                    console.log('tokenPrice-----', tokenPrice);
                     setTokenValue( xrpValue * xrpPrice / tokenPrice);
                 }
             });

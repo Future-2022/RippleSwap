@@ -76,9 +76,9 @@ router.post(
 
       console.log("Identifying hash:", signed.hash)
       console.log("Signed blob:", signed.tx_blob)
-      // const tx = await client.submitAndWait(signed.tx_blob);
+      const tx = await client.submitAndWait(signed.tx_blob);
       // console.log('tx', tx);
-      const balance = await client.getXrpBalance(address);
+      // const balance = await client.getXrpBalance(address);
       res.json({msg:'success', balance: balance});
     } catch (err) {
       console.error(err.message);
