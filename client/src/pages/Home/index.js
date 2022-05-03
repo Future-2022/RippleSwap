@@ -25,8 +25,45 @@ import Header from './Header';
 import Footer from './Footer';
 import ItemCard from './ItemCard';
 
+import $ from 'jquery';
+
 const Home = (props) => {
     const [openItem, setOpenItem] = useState(0);  
+    const [xrpPrice, setXRPPrice] = useState(0);  
+    const [xrpCoin, setXRPCoin] = useState([]);  
+
+    useEffect(() => {
+        window.setTimeout(function() {
+            $.ajax({
+                url: "https://api.binance.com/api/v3/avgPrice?symbol=XRPUSDT",  
+                dataType:'json',
+                method: "GET",
+                success: function(response) {
+                    setXRPPrice(response['price']);
+                }
+            });
+        }, 100);
+    }, []);
+
+    useEffect(() => {
+        window.setTimeout(function() {
+            $.ajax({
+                url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc",                
+                headers: { 
+                    'content-type': 'application/json'
+                },
+                dataType:'json',
+                method: "GET",
+                success: function(response) {
+                    response.map((item) => {
+                        if(item['symbol'] == 'xrp') {
+                            setXRPCoin(item);
+                        }
+                    })
+                }
+            });
+        }, 100);
+    }, []);
 
     return (
         <>
@@ -39,7 +76,7 @@ const Home = (props) => {
                         <span className='pl-3 align-self-center fs-19'>ALL Coins</span>
                     </div>
 
-                    <div className='d-flex text-white pt-3'>
+                    <div className='d-flex text-white pt-3 flex-wrap'>
                         <SwapCard />
                         <div className='main-title'>
                             <div><h1>Exchage XRP</h1></div>
@@ -62,7 +99,7 @@ const Home = (props) => {
                                 <p className='text-gray'>To help you make a decision about exchanging your XRP, we gathered some cold hard numbers: XRP price chart and other stats, such as XRP market cap.</p>
                             </div>
                         </div>
-                        <div className='d-flex px-5 pt-4 flex-sm-wrap'>
+                        <div className='d-flex px-3 pt-4 flex-wrap'>
                             <div className='w-3 d-flex'>
                                 <div><img src={icon1} width={75} /></div>
                                 <div className='pl-4 align-self-center'>
@@ -113,17 +150,35 @@ const Home = (props) => {
 
                     <div className='text-white pt-4'>
                         <div><h4 className='font-OpenSansRegular'>XRP Price Chat</h4></div>
-                            <p className='text-gray'>
-                                Here you can see the current price of XRP, as well as XRP price history.
-                            </p>
-                        <div className='xrp-chart'>
-                            <p className='pt-4 pl-4'>xrp/USDT</p>
-                            <div className='pl-5'><Chart coinType='ripple' coinName='Ripple' /></div>
+                        <p className='text-gray'>
+                            Here you can see the current price of XRP, as well as XRP price history.
+                        </p>
+                        <div className='d-flex flex-wrap justify-content-center'>
+                            <div className='xrp-chart'>
+                                <p className='pt-4 pl-4'>xrp/USDT</p>
+                                <div className='pl-3 d-flex'>
+                                    <Chart coinType='ripple' coinName='Ripple' />
+                                </div>
+                            </div>    
+                            {console.log(xrpCoin)}     
+                            {xrpCoin && (
+                                <div className='d-flex px-3 price-part'>
+                                    <div className='d-flex flex-column m-auto main-price-part'>
+                                        <div className='d-flex justify-content-between'><img src={xrpCoin['image']} width={40} className=' img-thumbnail' /><h3 className='pl-4'>XRP Coin</h3></div>
+                                        <hr />
+                                        <p className='text-yellow d-flex justify-content-between pt-3'><span className='text-white font-OpenSansRegular pr-4'>Price</span> {xrpCoin['current_price']}</p>
+                                        <p className='text-yellow d-flex justify-content-between'><span className='text-white font-OpenSansRegular pr-4'>24 Hours change</span> {xrpCoin['price_change_24h']}</p>
+                                        <p className='text-yellow d-flex justify-content-between'><span className='text-white font-OpenSansRegular pr-4'>Total Supply</span> {xrpCoin['total_supply']}</p>
+                                        <p className='text-yellow d-flex justify-content-between'><span className='text-white font-OpenSansRegular pr-4'>Max Supply</span> {xrpCoin['max_supply']}</p>
+                                        <p className='text-yellow d-flex justify-content-between'><span className='text-white font-OpenSansRegular pr-4'>Last Update</span> {xrpCoin['last_updated']}</p>
+                                    </div>
+                                </div>
+                            )}    
                         </div>
                     </div>
 
                     <div className='text-white pt-4'>
-                        <div className='w-25'><h4 className='font-OpenSansRegular line-height-4'>A Simple Way To Exchange XRP Here At SwapSpace</h4></div>
+                        <div className='w-100'><h4 className='font-OpenSansRegular line-height-4'>A Simple Way To Exchange XRP Here At SwapSpace</h4></div>
                         <div className='pt-4'>
                             <div className='d-flex'>
                                 <div><img src={expIcon1} width={75} /></div>
@@ -132,7 +187,7 @@ const Home = (props) => {
                                     <div><h5 className='font-OpenSansSemiBold'>Choose pair</h5></div>
                                 </div>
                             </div>
-                            <p className='text-gray w-50'>Choose the cryptocurrencies you would like to exchange among more than 800 coins and tokens. Pick them from drop-down menus. Type the number of coins you want to swap.</p>
+                            <p className='text-gray min-267 w-50'>Choose the cryptocurrencies you would like to exchange among more than 800 coins and tokens. Pick them from drop-down menus. Type the number of coins you want to swap.</p>
                         </div>
                         <div className='pt-4'>
                             <div className='d-flex'>
@@ -142,7 +197,7 @@ const Home = (props) => {
                                     <div><h5 className='font-OpenSansSemiBold'>Select the best rate</h5></div>
                                 </div>
                             </div>
-                            <p className='text-gray w-50'>You choose the rate – we do the magic! Pick up the exchange service by the rate which meets your requirements. Make sure you are okay with the selected service network fee and privacy policy: some of them require you to pass the AML/KYC procedure.</p>
+                            <p className='text-gray min-267 w-50'>You choose the rate – we do the magic! Pick up the exchange service by the rate which meets your requirements. Make sure you are okay with the selected service network fee and privacy policy: some of them require you to pass the AML/KYC procedure.</p>
                         </div>
                         <div className='pt-4'>
                             <div className='d-flex'>
@@ -152,7 +207,7 @@ const Home = (props) => {
                                     <div><h5 className='font-OpenSansSemiBold'>Transfer funds</h5></div>
                                 </div>
                             </div>
-                            <p className='text-gray w-50'>Send the exact amount to the address provided and receive the crypto in your wallet within minutes. Don’t have a wallet yet? Our support will recommend a good one!</p>
+                            <p className='text-gray min-267 w-50'>Send the exact amount to the address provided and receive the crypto in your wallet within minutes. Don’t have a wallet yet? Our support will recommend a good one!</p>
                         </div>
                         <div className='pt-4'>
                             <div className='d-flex'>
@@ -162,7 +217,7 @@ const Home = (props) => {
                                     <div><h5 className='font-OpenSansSemiBold'>Receive your coins</h5></div>
                                 </div>
                             </div>
-                            <p className='text-gray w-50'>You’ll get your coins in a few minutes! The exact time is a subject of various parameters such as blockchain network workload, transaction volume, our partners’ processing speed, etc. Concerned about your transaction? Check the swap tracker or feel free to contact the support: <a href='safemoonswap.app' className='text-white'>support@swapspace.co.</a></p>
+                            <p className='text-gray min-267 w-50'>You’ll get your coins in a few minutes! The exact time is a subject of various parameters such as blockchain network workload, transaction volume, our partners’ processing speed, etc. Concerned about your transaction? Check the swap tracker or feel free to contact the support: <a href='safemoonswap.app' className='text-white'>support@swapspace.co.</a></p>
                         </div>
                     </div>
 

@@ -26,9 +26,10 @@ const Portfolio = (props) => {
     }    
 
     return (
-        <>
+        <div>
+            <div className='main-body p-main'>
             <Header />
-            <div className='main-body d-flex justify-content-center'>
+            <div className='d-flex justify-content-center'>
                 <div className='w-3'>
                     <div className='stake-card d-flex flex-column py-4'>
                         <div className='item-title d-flex'>
@@ -59,8 +60,9 @@ const Portfolio = (props) => {
                     </div>
                 </div>
             </div>
+            </div>
             <Footer /> 
-        </>
+        </div>
     )
 }
 

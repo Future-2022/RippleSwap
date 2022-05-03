@@ -1,9 +1,10 @@
 .stake-card {
     background-color: #36293b;
     padding: 15px;
-    margin: 15px;    
+    margin: 15px;
     border-radius: 15px;
-    width: 400px;
+    width: 80%;
+    min-width: 329px;
 }
 
 .pool-percentage-btn {
@@ -55,7 +56,8 @@
     width: 600px;
 }
 .w-125 {
-    width: 150px;
+    width: 25%;
+    min-width: 130px;
 }
 .btn-best-exchange {
     border: solid 1px yellow;

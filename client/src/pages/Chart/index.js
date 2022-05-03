@@ -123,11 +123,11 @@ const Chart = ({coinType, coinName}) => {
                     </XYChart>
                 )}
                 {coinType === 'ripple' && mappedData[0] && (
-                    <XYChart width={1200} height={300} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [mappedData[0].price - 0.03, mappedData[0].price + 0.03], zero:false }}>
+                    <XYChart width={340} height={270} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [mappedData[0].price - 0.03, mappedData[0].price + 0.03], zero:false }}>
                     {/* <XYChart width={300} height={250} xScale={{ type: "band" }} yScale={{ type: "linear", domain: [(Number(mappedData[0].price) - 15), (Number(mappedData[0].price) + 15)], zero:false }}> */}
                         <LinearGradient
                             id="area-gradient"
-                            from='#1e422d'
+                            from='rgb(3, 175, 232)'
                             fromOpacity={1}
                             to='#1e222d'
                             toOpacity={0.5}

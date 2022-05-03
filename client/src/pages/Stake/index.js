@@ -187,9 +187,10 @@ const StakePage = (props) => {
     }
 
     return (
-        <>
+        <div>
+            <div className='main-body p-main'>
             <Header />
-            <div className='main-body d-flex justify-content-center'>
+            <div className='d-flex justify-content-center'>
                 <div className='w-3'>
                 
                     <Countdown date={date}
@@ -296,8 +297,9 @@ const StakePage = (props) => {
                     </div>
                 </div>
             </div>
+            </div>
             <Footer /> 
-        </>
+        </div>
     )
 }
 

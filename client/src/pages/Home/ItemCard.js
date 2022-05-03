@@ -24,7 +24,7 @@ const ItemCard = (props) => {
         <>
             <div className='text-white pt-5'>
                 <div><h4 className='font-OpenSansRegular'>Swapspace Reviews</h4></div>
-                <div className='d-flex'>
+                <div className='d-flex flex-wrap'>
                     <div className='w-3'>
                         <div className='item-card'>
                             <div className='item-title d-flex'>

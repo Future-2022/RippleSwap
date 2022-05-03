@@ -9,16 +9,16 @@ const Header = (props) => {
 
     return (
         <>
-            <div className='d-flex justify-content-between py-3'>
+            <div className='d-flex justify-content-between py-3 flex-wrap'>
                 <div>
                     <Link to='/'>
                         <img src={mainLogo} width={210} height={150} />
                     </Link>
                 </div>
-                <div className='d-flex text-white'>
-                    <div className='px-2 pt-2'>How do it works</div>
-                    <div className='px-2 pt-2'>About</div>
-                    <div className='px-2 pt-2'>FAQ</div>   
+                <div className='d-flex text-white w-50 flex-wrap'>
+                    <div className='min-100 px-2 pt-2'>How do it works</div>
+                    <div className='min-100 px-2 pt-2'>About</div>
+                    <div className='min-100 px-2 pt-2'>FAQ</div>   
                     <Connect />
                 </div>
             </div>              

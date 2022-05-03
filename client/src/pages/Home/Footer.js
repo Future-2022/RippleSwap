@@ -23,16 +23,16 @@ const Footer = (props) => {
 
                 <div>
                     <div className='p-main'>
-                        <div className='d-flex'>                            
-                            <div className='w-50'>
+                        <div className='d-flex flex-wrap justify-content-center'>                            
+                            <div className='w-50 min-267 '>
                                 <div><h4 className='font-OpenSansRegulars cum-yellow'>SwapSpace</h4></div>
                                 <div>
-                                    <p className='subscripe text-justify mr-40 font-OpenSansRegular fs-14'>SwapSpace provides you with a full spectrum of crypto exchange options to help you swap your crypto quickly and easily. We partner with top cryptocurrency exchanges to give you the ability to easily swap more than 800 cryptocurrencies and tokens with no limits or registration — all while keeping the highest standard of care for our customers.
+                                    <p className='subscripe text-justify mx-4 font-OpenSansRegular fs-14'>SwapSpace provides you with a full spectrum of crypto exchange options to help you swap your crypto quickly and easily. We partner with top cryptocurrency exchanges to give you the ability to easily swap more than 800 cryptocurrencies and tokens with no limits or registration — all while keeping the highest standard of care for our customers.
 
                                         Our highest priority is saving your time, which is why we did all the work for you. You only need to decide what cryptocurrency you want to swap — and then choose the best exchange option for you. As easy as pie!</p>
                                 </div>
                             </div>
-                            <div className='d-flex justify-content-around w-50'>
+                            <div className='d-flex justify-content-around w-50 min-267 flex-wrap'>
                                 <div>
                                     <h6 className='text-grey font-OpenSansRegular'>Supported coins</h6>
                                     <div><p className='mb-1'>Bitcoin</p></div>

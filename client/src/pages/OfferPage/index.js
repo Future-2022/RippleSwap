@@ -54,15 +54,15 @@ const urlItem = [
     {name:'switchain', url: 'https://www.switchain.com/'},
     {name:'changehero', url: 'https://changehero.io/'},
     {name:'changehero', url: 'https://changehero.io/'},
-    {name:'binance', url: 2.3},
-    {name:'letsexchange', url: 3},
-    {name:'letsexchange', url: 3},
-    {name:'mercuryo', url: 3},
-    {name:'alfacash', url: 3},
-    {name:'swapuz', url: 3},
-    {name:'swapuz', url: 3},
-    {name:'kucoin', url: 3},
-    {name:'quickex', url: 3},
+    {name:'binance', url: 'https://binance.com/'},
+    {name:'letsexchange', url: 'https://letsexchange.io/'},
+    {name:'letsexchange', url: 'https://letsexchange.io/'},
+    {name:'mercuryo', url: 'https://mercuryo.io/'},
+    {name:'alfacash', url: 'https://www.alfa.cash/'},
+    {name:'swapuz', url: 'https://swapuz.com/'},
+    {name:'swapuz', url: 'https://swapuz.com/'},
+    {name:'kucoin', url: 'https://www.kucoin.com/'},
+    {name:'quickex', url: 'https://quickex.io/'}
 ];
 
 const OfferPage = (props) => {
@@ -74,6 +74,7 @@ const OfferPage = (props) => {
     const [selectedItem, setSelectedItem] = useState('');
     const [allCoin, setAllCoin] = useState([]);
     const [swapList, setSwapList] = useState([]);
+    const [sortBool, setSortBool] = useState(false);
 
     const OpenItem = () => {
         if(itemOpen == false) {
@@ -156,9 +157,12 @@ const OfferPage = (props) => {
                     dataType:'json',
                     method: "GET",
                     success: function(response) {
-                        
+                        const tempBegin = [];
+                        response.sort((a, b) => a['toAmount'] < b['toAmount'] ? 1 : -1).map((item) => {
+                            tempBegin.push(item);
+                        })
                         const temp = [];
-                        response.map(item => {
+                        tempBegin.map(item => {
                             if(item['exists'] == true)
                                 temp.push(item);
                         })
@@ -199,15 +203,45 @@ const OfferPage = (props) => {
     }, [selectedItem, xrpValue]);
 
     const sendExchange = (name) => {
+        urlItem.map(item => {
+            if(name == item['name']) {
+                window.open(item['url'], '_blank');
+            }
+        })
+    }
+    const sortByRate = () => {
+        const temp = [];
+        swapList.sort((a, b) => b['toAmount'] > a['toAmount'] ? 1 : -1).map((item) => {
+            temp.push(item);
+        });
+        setSwapList(temp);
+        setSortBool(false);
+    }
 
+    const sortByETA = () => {
+        const temp = [];
+        swapList.sort((a, b) => formatDuration(a['duration']) > formatDuration(b['duration']) ? 1 : -1).map((item) => {
+            temp.push(item);
+        });
+        setSwapList(temp);
+        setSortBool(true);
+    }
+
+    const formatDuration = (duration) => {
+        if(duration.indexOf('-') > 0) {
+            return duration.split('-')[0];
+        } else {
+            return duration;
+        }
     }
 
     return (
-        <>
+        <div>
+            <div  className='p-main main-body'>
             <Header />
-                <div className='d-flex main-body text-white p-main'>
+                <div className='d-flex text-white p-main flex-wrap justify-content-center'>
                     <div className='w-400'>
-                        <div className='swap-card h-240'>
+                        <div className='swap-card2 h-240'>
                             <div className='py-3 px-4'>
                                 <div>
                                     <div><p className='mb-1'>You send</p></div>
@@ -247,18 +281,18 @@ const OfferPage = (props) => {
                             <p className='text-gray pt-5'>SwapSpace provides you with exchange options from the swap services and exchanges we partner with. If our partners’ rules contain extra requirements, such as KYC procedure or floating rate, we obey them. Be careful and read the selected partner's terms before you start an exchange.</p>
                         </div>
                     </div>
-                    <div className='w-75 pl-5 text-center'>
+                    <div className='w-50 pl-5 text-center min-267'>
                         <div className='d-flex justify-content-center text-grey'>
-                            <div className='w-250 border-bottom text-center c-border-bottom pb-3 d-flex nav-active justify-content-center'><div>Sort by rate</div> <FaQuestionCircle className='align-self-center ml-3'/></div>
-                            <div className='w-250 border-bottom text-center c-border-bottom pb-3 d-flex justify-content-center'><div>Sort by ETA</div> <FaQuestionCircle className='align-self-center ml-3' /></div>
+                            <div className= {`w-250 border-bottom text-center c-border-bottom pb-3 cursor-pointer ${sortBool === false ? 'nav-active': ''} d-flex justify-content-center`} onClick={sortByRate}><div>Sort by rate</div> <FaQuestionCircle className='align-self-center ml-3'/></div>
+                            <div className= {`w-250 border-bottom text-center c-border-bottom pb-3 cursor-pointer ${sortBool === true ? 'nav-active': ''} d-flex justify-content-center`} onClick={sortByETA}><div>Sort by ETA</div> <FaQuestionCircle className='align-self-center ml-3' /></div>
                         </div>
                         {swapList && swapList.map((item, key)=> {
                             if (key == 0) {
-                                return <div className='d-flex justify-content-center text-center pt-4'>
+                                return <div><div className='d-flex justify-content-center text-center pt-4 flex-wrap'>
                                     <div className='w-125 text-center'>
                                         <div>
                                             <p className='text-gray fs-12 mb-2 font-OpenSansRegular'>Rate</p>
-                                            <h5 className='text-yellow text-left font-OpenSansSemiBold'>{addingItem[key]['rating']}</h5>
+                                            <h5 className='text-yellow text-left font-OpenSansSemiBold'>{item['toAmount'].toFixed(2)}</h5>
                                         </div>
                                         <div className='pt-2'>
                                             <p className='text-gray fs-12 mb-2 font-OpenSansRegular'>Type</p>
@@ -302,15 +336,18 @@ const OfferPage = (props) => {
                                     <div className='w-125 text-center d-flex flex-column justify-content-end'>
                                         <div className='rate-badge align-self-end'><h6 className='font-OpenSansRegular fs-14 mb-0'>Best Rate</h6></div>
                                         <div className='btn btn-best-exchange mt-2 mb-2' onClick={() => sendExchange(item['partner'])}>Exchange</div>
-                                    </div>                            
+                                    </div>                         
+                                </div>
+                                <hr />   
                                 </div>
                             }
                             else {                         
-                                    return <div className='d-flex justify-content-center text-center pt-4'>
+                                    return <div>
+                                    <div className='d-flex justify-content-center text-center pt-4 flex-wrap'>
                                         <div className='w-125 text-center'>
                                             <div>
                                                 <p className='text-gray fs-12 mb-2 font-OpenSansRegular'>Rate</p>
-                                                <h5 className='text-white text-left font-OpenSansSemiBold'>{addingItem[key]['rating']}</h5>
+                                                <h5 className='text-white text-left font-OpenSansSemiBold'>{item['toAmount'].toFixed(2)}</h5>
                                             </div>
                                             <div className='pt-2'>
                                                 <p className='text-gray fs-12 mb-2 font-OpenSansRegular'>Type</p>
@@ -357,17 +394,21 @@ const OfferPage = (props) => {
                                         </div>
                                         <div className='w-125 text-center d-flex flex-column justify-content-end'>
                                             <div className='btn btn-exchange mt-2 mb-2' onClick={() => sendExchange(item['partner'])}>Exchange</div>
-                                        </div>                            
+                                        </div>                         
+                                    </div>
+                                    
+                                    <hr />   
                                     </div>
                                 }
                             })}
-                        
-                        
-                        <hr className='grey w-600 inline-block'/>
+                        {swapList.length === 0 && (
+                            <div className='pt-5 pb-3'><h1>Loading....</h1></div>
+                        )}
                     </div>
                 </div>
+                </div>
             <Footer /> 
-        </>
+        </div>
     )
 }
 

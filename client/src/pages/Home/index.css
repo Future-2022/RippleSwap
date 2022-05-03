@@ -5,7 +5,7 @@
     background-repeat: no-repeat;
 }
 .p-main {
-    padding: 20px 160px;
+    padding: 3% 5%;
 }
 .text-main-color {
     color: #d74015;
@@ -17,10 +17,20 @@
     font-size: 19px;
 }
 .swap-card{
-    width: 400px;
+    width: 30%;
     height: 300px;
+    min-width: 320px;
     border-radius: 30px;
     background-color: rgba(54,41,59,.6);
+}
+.swap-card2{
+    height: 300px;
+    min-width: 320px;
+    border-radius: 30px;
+    background-color: rgba(54,41,59,.6);
+}
+.min-100 {
+    min-width: 100px;
 }
 .input-form {
     background-color: #27212b;
@@ -71,7 +81,7 @@
     box-shadow: 0 4px 30px rgb(0 0 0 / 20%), 0 4px 50px rgb(227 87 96 / 50%), 0 60px 150px rgb(227 87 96 / 62%);
 }
 .main-title {
-    width: 35%;
+    width: 400px;
     padding: 25px
 }
 .text-gray {
@@ -80,6 +90,13 @@
 }
 .w-3 {
     width: 33%;
+    min-width: 360px;
+}
+.text-gray .w-50 {
+    min-width: 380px;
+}
+.min-267 {
+    min-width: 300px;
 }
 .item-card {
     background-color: #36293b;
@@ -127,8 +144,19 @@
     color: white!important;
 }
 .xrp-chart {
-    height: 400px;
-    background-color: #222222;
+    height: 320px;
+    width: 370px;
+    background-color: #2f2535;
+}
+
+.main-price-part {
+    background-color: #276cb686;
+    padding: 28px;
+    border-radius: 12px;
+}
+.price-part {
+    width: 70%;
+    min-height: 350px;
 }
 .line-height-4 {
     line-height: normal;
@@ -152,7 +180,7 @@
     padding: 16px;
     color: black;
     outline: none;
-    width: 400px;
+    width: 240px;
     font-size: 18px;
 }
 .send-btn {

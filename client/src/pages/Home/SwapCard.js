@@ -9,7 +9,7 @@ const SwapCard = (props) => {
 
     const history = useHistory();
     const [itemOpen, setItemOpen] = useState(false);
-    const [xrpValue, setXRPValue] = useState(0);
+    const [xrpValue, setXRPValue] = useState(0.1);
     const [tokenValue, setTokenValue] = useState(0.1);
     const [coinList, setCoinList] = useState([]);
     const [selectedItem, setSelectedItem] = useState('');
