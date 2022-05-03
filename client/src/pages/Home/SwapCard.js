@@ -93,7 +93,7 @@ const SwapCard = (props) => {
                     tokenPrice = response['price'];
                 }
             });
-        }, 100);
+        }, 300);
         window.setTimeout(function() {
             $.ajax({
                 url: "https://api.binance.com/api/v3/avgPrice?symbol=XRPUSDT",  
@@ -101,10 +101,12 @@ const SwapCard = (props) => {
                 method: "GET",
                 success: function(response) {
                     xrpPrice = response['price'];
-                    setTokenValue(xrpValue * tokenPrice / xrpPrice);
+                    console.log('xrpPrice', xrpPrice);
+                    console.log('tokenPrice', tokenPrice);
+                    setTokenValue( xrpValue * xrpPrice / tokenPrice);
                 }
             });
-        }, 100);
+        }, 300);
     }, [xrpValue]);
 
     const viewOfferPage = () => {
