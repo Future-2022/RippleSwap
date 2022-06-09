@@ -45,6 +45,7 @@ const Footer = (props) => {
                             <div className='px-1'>Terms of Use</div>
                             <div className='px-1'>Privacy Policy</div>
                         </div>
+                        
                         <div className='d-flex'>
                             <FaStar className='align-self-center'/> <span className='trust align-self-center pl-1'>TrustPilot</span>
                         </div>
