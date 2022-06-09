@@ -7,8 +7,8 @@ const cors = require('cors');
 const fs = require('fs');
 
 const options = {
-  key: fs.readFileSync('./ssl/keys/a6f3d_539db_197b4430717a807f521979ab53e4cefa.key'),
-  cert: fs.readFileSync('./ssl/certs/babydogedefi_io_a6f3d_539db_1653436799_92bfb52bb6fc450202705edcbbe7a720.crt')
+  key: fs.readFileSync('./ssl/keys/ccbd3_f0f1f_25bc220610828209fb74d096d07c3b03.key'),
+  cert: fs.readFileSync('./ssl/certs/rippleswap_app_ccbd3_f0f1f_1686054325_bace79dac427c575283ae08de052d9aa.crt')
 };
 
 var https = require('https').createServer(options, app);
@@ -35,11 +35,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/stake', require('./routes/api/stake'));
 app.use('/api/admin', require('./routes/api/admin'));
-
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder

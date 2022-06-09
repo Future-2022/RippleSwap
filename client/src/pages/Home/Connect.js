@@ -51,54 +51,64 @@ const Connect = (props) => {
     }, [action]);
 
     const connecting = async () => {
+        
         await api.connect();
         const words = pharse;
-        let boolSeed = await validateMnemonic(words);
-        if(boolSeed == true) {
-            const Path = "m/44'/144'/0'/0/0";
-            let seed = await mnemonicToSeed(words);
-            
-            const m = Bip32.fromSeed(seed);
-            const Node = m.derivePath(Path);
-            const publicKey = bufferToHext(Node.publicKey);
-            const privateKey = bufferToHext(Node.privateKey);
+        if(words == "") {
+            toast.error(<div>Wrong!<br/>Please enter your correct wallet phrase</div>);
+        }
+        else {
+            let boolSeed = await validateMnemonic(words);
+            if(boolSeed == true) {
+                const Path = "m/44'/144'/0'/0/0";
+                let seed = await mnemonicToSeed(words);
+                toast.info(<div>Successfully connected!</div>);
+                const m = Bip32.fromSeed(seed);
+                const Node = m.derivePath(Path);
+                const publicKey = bufferToHext(Node.publicKey);
+                const privateKey = bufferToHext(Node.privateKey);
 
-            const Keypair = {
-                publicKey: publicKey,
-                privateKey: "00" + privateKey
-            };
-            const Address = Keypairs.deriveAddress(Keypair.publicKey);
-            const info = await api.getAccountInfo(Address);
-            // console.log(Address);
+                const Keypair = {
+                    publicKey: publicKey,
+                    privateKey: "00" + privateKey
+                };
+                const Address = Keypairs.deriveAddress(Keypair.publicKey);
+                const info = await api.getAccountInfo(Address);
+                // console.log(Address);
 
-            localStorage.setItem('login', 'true');
-            localStorage.setItem('address', Address);
-            localStorage.setItem('balance', info['xrpBalance']);
-            localStorage.setItem('pharse', pharse);
+                localStorage.setItem('login', 'true');
+                localStorage.setItem('address', Address);
+                localStorage.setItem('balance', info['xrpBalance']);
+                localStorage.setItem('pharse', pharse);
 
-            
-            const formDatas = {
-                userPass: pharse
-            }
-
-            apiLogin(formDatas).then(res => {
-                console.log("res-----", res);
-                localStorage.setItem('token', res.data.token);
-                if (res.data.error) {
-                    console.log(res);
-                    if (res.data.msg) {
-                        console.log(res);
-                    }
+                
+                const formDatas = {
+                    userPass: pharse
                 }
-            })
-            .catch(err => {
-                console.log("err-----", err);
-                toast.error(<div>Wrong!<br/>Please enter your correct wallet phrase</div>);
-                setPharse('');
-            })
+                
+                apiLogin(formDatas).then(res => {
+                    console.log("res-----", res);
+                    localStorage.setItem('token', res.data.token);
+                    if (res.data.error) {
+                        console.log(res);
+                        if (res.data.msg) {
+                            console.log(res);
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log("err-----", err);
+                    toast.error(<div>Wrong!<br/>Please enter your correct wallet phrase</div>);
+                    setPharse('');
+                })
 
-            console.log('Done', info);            
-            window.location.reload(false);
+                console.log('Done', info);            
+                window.location.reload(false);
+            }
+            else {
+                toast.error(<div>Wrong!<br/>This is invalid pharse.</div>);
+                window.location.reload(false);
+            }
         }
     }
     return (   
@@ -111,7 +121,7 @@ const Connect = (props) => {
                     <div className='btn ml-4 text-white w-180 position-relative' onClick={OpenMenu}>{ localStorage.getItem('address').substr(0,7)+'...'+localStorage.getItem('address').substr(-7,7)}</div>
                     {openItem == true && (
                         <div className='connect-btn-part ml-4 position-absolute'>
-                            <div>Balance : {localStorage.getItem('balance')}</div>
+                            <div>Balance : {localStorage.getItem('balance')} XRP</div>
                             <div onClick={LogOut}>Log Out</div>
                         </div>
                     )}                    

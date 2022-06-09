@@ -73,15 +73,15 @@ const MyModal = ({isOpen, action, propPharse}) => {
                             <p className='align-self-center mb-0 title-color pt-0'>Ripple Wallet</p>
                             <img src={Ripplewallet} width={35}></img>
                         </div>
-                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer'>
+                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer' onClick={() => setStep(2)}>
                             <p className='align-self-center mb-0 title-color pt-0'>MetaMask</p>
                             <img src={MetaMask} width={35}></img>
                         </div>
-                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer'>
+                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer' onClick={() => setStep(2)}>
                             <p className='align-self-center mb-0 title-color pt-0'>Binance Chain Wallet</p>
                             <img src={Bnbwallet} width={35}></img>
                         </div>
-                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer'>
+                        <div className='d-flex justify-content-between w-245 list-wallet cursor-pointer' onClick={() => setStep(2)}>
                             <p className='align-self-center mb-0 title-color pt-0'>Trust Wallet</p>
                             <img src={Trustwallet} width={35}></img>
                         </div>

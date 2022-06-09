@@ -32,41 +32,6 @@ const Footer = (props) => {
                                         Our highest priority is saving your time, which is why we did all the work for you. You only need to decide what cryptocurrency you want to swap — and then choose the best exchange option for you. As easy as pie!</p>
                                 </div>
                             </div>
-                            <div className='d-flex justify-content-around w-50 min-267 flex-wrap'>
-                                <div>
-                                    <h6 className='text-grey font-OpenSansRegular'>Supported coins</h6>
-                                    <div><p className='mb-1'>Bitcoin</p></div>
-                                    <div><p className='mb-1'>Ethereum</p></div>
-                                    <div><p className='mb-1'>XRP</p></div>
-                                    <div><p className='mb-1'>Litecoin</p></div>
-                                    <div><p className='mb-1'>Dash</p></div>
-                                    <div><p className='mb-1'>Dogecoin</p></div>
-                                    <div><p className='mb-1 d-flex'>All coins <FaAngleDoubleRight className='align-self-center ml-2' /> </p></div>
-                                </div>
-                                <div>
-                                    <h6 className='text-grey font-OpenSansRegular'>Company</h6>
-                                    <div><p className='mb-1'>About</p></div>
-                                    <div><p className='mb-1'>Blog</p></div>
-                                    <div><p className='mb-1'>Contracts</p></div>
-                                    <div><p className='mb-1'>Our Partners</p></div>
-                                    <div><p className='mb-1'>Press About Us</p></div>
-                                    <div><p className='mb-1'>Brand Assets</p></div>
-                                </div>
-                                <div>
-                                    <h6 className='text-grey font-OpenSansRegular'>Info</h6>
-                                    <div><p className='mb-1'>How It works</p></div>
-                                    <div><p className='mb-1'>FAQ</p></div>
-                                    <div><p className='mb-1'>Price Predictions</p></div>
-                                    <div><p className='mb-1'>Bitcoin Halving</p></div>
-                                    <div><p className='mb-1'>Exchange Pairs</p></div>
-                                </div>
-                                <div>
-                                    <h6 className='text-grey font-OpenSansRegular'>For Partners</h6>
-                                    <div><p className='mb-1'>Exchange Listing</p></div>
-                                    <div><p className='mb-1'>Affiliate Program</p></div>
-                                    <div className='d-flex'><p className='mb-1'>API Docs</p><FaExternalLinkAlt className='align-self-center ml-2'/></div>
-                                </div>
-                            </div>
                         </div>
                     </div> 
                 </div>
